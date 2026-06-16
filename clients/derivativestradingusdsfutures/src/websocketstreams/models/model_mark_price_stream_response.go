@@ -26,6 +26,7 @@ type MarkPriceStreamResponse struct {
 	P                    *string `json:"P,omitempty"`
 	Smallr               *string `json:"r,omitempty"`
 	T                    *int64  `json:"T,omitempty"`
+	Smallst              *int64  `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -336,6 +337,38 @@ func (o *MarkPriceStreamResponse) SetT(v int64) {
 	o.T = &v
 }
 
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *MarkPriceStreamResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MarkPriceStreamResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *MarkPriceStreamResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *MarkPriceStreamResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o MarkPriceStreamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -373,6 +406,9 @@ func (o MarkPriceStreamResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T
 	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -404,6 +440,7 @@ func (o *MarkPriceStreamResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "P")
 		delete(additionalProperties, "r")
 		delete(additionalProperties, "T")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

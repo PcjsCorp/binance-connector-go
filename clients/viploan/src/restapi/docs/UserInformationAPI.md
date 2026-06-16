@@ -109,7 +109,7 @@ func main() {
 	loanCoin := "loanCoin_example" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
+	current := int64(1) // int64 | Page number, default 1, minimum 1 (optional)
 	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -143,7 +143,7 @@ Name          | Type          | Description   | Notes
  **loanCoin** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
+ **current** | **int64** | Page number, default 1, minimum 1 | 
  **limit** | **int64** | Default: 10; max: 100 | 
  **recvWindow** | **int64** |  | 
 
@@ -189,7 +189,7 @@ func main() {
 	collateralAccountId := int64(1) // int64 |  (optional)
 	loanCoin := "loanCoin_example" // string |  (optional)
 	collateralCoin := "collateralCoin_example" // string |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
+	current := int64(1) // int64 | Page number, default 1, minimum 1 (optional)
 	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -223,7 +223,7 @@ Name          | Type          | Description   | Notes
  **collateralAccountId** | **int64** |  | 
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
+ **current** | **int64** | Page number, default 1, minimum 1 | 
  **limit** | **int64** | Default: 10; max: 100 | 
  **recvWindow** | **int64** |  | 
 
@@ -265,7 +265,7 @@ import (
 )
 
 func main() {
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
+	current := int64(1) // int64 | Page number, default 1, minimum 1 (optional)
 	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -295,7 +295,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
+ **current** | **int64** | Page number, default 1, minimum 1 | 
  **limit** | **int64** | Default: 10; max: 100 | 
  **recvWindow** | **int64** |  | 
 

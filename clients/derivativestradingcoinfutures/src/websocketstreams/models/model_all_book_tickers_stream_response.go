@@ -20,13 +20,14 @@ type AllBookTickersStreamResponse struct {
 	Smalle               *string `json:"e,omitempty"`
 	Smallu               *int64  `json:"u,omitempty"`
 	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
 	Smallb               *string `json:"b,omitempty"`
 	B                    *string `json:"B,omitempty"`
 	Smalla               *string `json:"a,omitempty"`
 	A                    *string `json:"A,omitempty"`
 	T                    *int64  `json:"T,omitempty"`
 	E                    *int64  `json:"E,omitempty"`
+	Smallps              *string `json:"ps,omitempty"`
+	Smallst              *int64  `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -143,38 +144,6 @@ func (o *AllBookTickersStreamResponse) HasSmalls() bool {
 // SetS gets a reference to the given string and assigns it to the S field.
 func (o *AllBookTickersStreamResponse) SetSmalls(v string) {
 	o.Smalls = &v
-}
-
-// GetPs returns the Ps field value if set, zero value otherwise.
-func (o *AllBookTickersStreamResponse) GetSmallps() string {
-	if o == nil || common.IsNil(o.Smallps) {
-		var ret string
-		return ret
-	}
-	return *o.Smallps
-}
-
-// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AllBookTickersStreamResponse) GetSmallpsOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smallps) {
-		return nil, false
-	}
-	return o.Smallps, true
-}
-
-// HasPs returns a boolean if a field has been set.
-func (o *AllBookTickersStreamResponse) HasSmallps() bool {
-	if o != nil && !common.IsNil(o.Smallps) {
-		return true
-	}
-
-	return false
-}
-
-// SetPs gets a reference to the given string and assigns it to the Ps field.
-func (o *AllBookTickersStreamResponse) SetSmallps(v string) {
-	o.Smallps = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
@@ -369,6 +338,70 @@ func (o *AllBookTickersStreamResponse) SetE(v int64) {
 	o.E = &v
 }
 
+// GetPs returns the Ps field value if set, zero value otherwise.
+func (o *AllBookTickersStreamResponse) GetSmallps() string {
+	if o == nil || common.IsNil(o.Smallps) {
+		var ret string
+		return ret
+	}
+	return *o.Smallps
+}
+
+// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllBookTickersStreamResponse) GetSmallpsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallps) {
+		return nil, false
+	}
+	return o.Smallps, true
+}
+
+// HasPs returns a boolean if a field has been set.
+func (o *AllBookTickersStreamResponse) HasSmallps() bool {
+	if o != nil && !common.IsNil(o.Smallps) {
+		return true
+	}
+
+	return false
+}
+
+// SetPs gets a reference to the given string and assigns it to the Ps field.
+func (o *AllBookTickersStreamResponse) SetSmallps(v string) {
+	o.Smallps = &v
+}
+
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *AllBookTickersStreamResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllBookTickersStreamResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *AllBookTickersStreamResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *AllBookTickersStreamResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o AllBookTickersStreamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -388,9 +421,6 @@ func (o AllBookTickersStreamResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smalls) {
 		toSerialize["s"] = o.Smalls
 	}
-	if !common.IsNil(o.Smallps) {
-		toSerialize["ps"] = o.Smallps
-	}
 	if !common.IsNil(o.Smallb) {
 		toSerialize["b"] = o.Smallb
 	}
@@ -408,6 +438,12 @@ func (o AllBookTickersStreamResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
+	}
+	if !common.IsNil(o.Smallps) {
+		toSerialize["ps"] = o.Smallps
+	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -434,13 +470,14 @@ func (o *AllBookTickersStreamResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "e")
 		delete(additionalProperties, "u")
 		delete(additionalProperties, "s")
-		delete(additionalProperties, "ps")
 		delete(additionalProperties, "b")
 		delete(additionalProperties, "B")
 		delete(additionalProperties, "a")
 		delete(additionalProperties, "A")
 		delete(additionalProperties, "T")
 		delete(additionalProperties, "E")
+		delete(additionalProperties, "ps")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

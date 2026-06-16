@@ -5,23 +5,24 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
+	client "github.com/binance/binance-connector-go/clients/wallet"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
-	MultiAssetsModeAssetIndex()
+	GetRegionList()
 }
 
-func MultiAssetsModeAssetIndex() {
+func GetRegionList() {
 	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.DerivativesTradingUsdsFuturesRestApiProdUrl),
+		common.WithBasePath(common.WalletRestApiProdUrl),
 		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
 	)
-	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
+	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.MultiAssetsModeAssetIndex(context.Background()).Execute()
+	resp, err := apiClient.RestApi.TravelRuleAPI.GetRegionList(context.Background()).CountryCode("countryCode_example").Execute()
 	if err != nil {
 		log.Println(err)
 		return

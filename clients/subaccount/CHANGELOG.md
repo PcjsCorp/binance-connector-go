@@ -1,5 +1,13 @@
 ### Changelog
 
+## 1.8.0 - 2026-06-16
+
+### Changed (1)
+
+- Added parameter `includeSource`
+  - affected methods:
+    - `getSubAccountDepositHistory()` (`GET /sapi/v1/capital/deposit/subHisrec`)
+
 ## 1.7.0 - 2026-05-20
 
 ### Changed (2)

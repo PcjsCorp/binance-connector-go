@@ -647,7 +647,7 @@ func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Limit(
 	return r
 }
 
-// Transfer Direction (FROM/TO)
+// Transfer Direction (from/to)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Transfers(transfers string) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
 	r.transfers = &transfers
 	return r
@@ -675,7 +675,7 @@ https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Manage
 @param endTime -  End Time (The start time and end time interval cannot exceed half a year)
 @param page -  Page
 @param limit -  Limit (Max: 500)
-@param transfers -  Transfer Direction (FROM/TO)
+@param transfers -  Transfer Direction (from/to)
 @param transferFunctionAccountType -  Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
 @return ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest
 */
@@ -774,7 +774,7 @@ func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Limit(l
 	return r
 }
 
-// Transfer Direction (FROM/TO)
+// Transfer Direction (from/to)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Transfers(transfers string) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
 	r.transfers = &transfers
 	return r
@@ -802,7 +802,7 @@ https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Manage
 @param endTime -  End Time (The start time and end time interval cannot exceed half a year)
 @param page -  Page
 @param limit -  Limit (Max: 500)
-@param transfers -  Transfer Direction (FROM/TO)
+@param transfers -  Transfer Direction (from/to)
 @param transferFunctionAccountType -  Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
 @return ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest
 */
@@ -895,7 +895,7 @@ func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) Limit(limi
 	return r
 }
 
-// Transfer Direction (FROM/TO)
+// Transfer Direction (from/to)
 func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) Transfers(transfers string) ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest {
 	r.transfers = &transfers
 	return r
@@ -927,7 +927,7 @@ https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Manage
 @param endTime -  End Time (The start time and end time interval cannot exceed half a year)
 @param page -  Page
 @param limit -  Limit (Max: 500)
-@param transfers -  Transfer Direction (FROM/TO)
+@param transfers -  Transfer Direction (from/to)
 @param transferFunctionAccountType -  Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
 @param recvWindow -
 @return ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest

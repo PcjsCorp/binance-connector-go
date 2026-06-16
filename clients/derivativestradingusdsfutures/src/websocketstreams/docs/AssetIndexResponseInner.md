@@ -1,4 +1,4 @@
-# MultiAssetsModeAssetIndexResponseInner
+# AssetIndexResponseInner
 
 ## Properties
 
@@ -19,320 +19,320 @@ Name         | Type          | Description.  | Notes
 
 ## Methods
 
-### NewMultiAssetsModeAssetIndexResponseInner
+### NewAssetIndexResponseInner
 
-`func NewMultiAssetsModeAssetIndexResponseInner() *MultiAssetsModeAssetIndexResponseInner`
+`func NewAssetIndexResponseInner() *AssetIndexResponseInner`
 
-NewMultiAssetsModeAssetIndexResponseInner instantiates a new MultiAssetsModeAssetIndexResponseInner object
+NewAssetIndexResponseInner instantiates a new AssetIndexResponseInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewMultiAssetsModeAssetIndexResponseInnerWithDefaults
+### NewAssetIndexResponseInnerWithDefaults
 
-`func NewMultiAssetsModeAssetIndexResponseInnerWithDefaults() *MultiAssetsModeAssetIndexResponseInner`
+`func NewAssetIndexResponseInnerWithDefaults() *AssetIndexResponseInner`
 
-NewMultiAssetsModeAssetIndexResponseInnerWithDefaults instantiates a new MultiAssetsModeAssetIndexResponseInner object
+NewAssetIndexResponseInnerWithDefaults instantiates a new AssetIndexResponseInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetE
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetE() string`
+`func (o *AssetIndexResponseInner) GetE() string`
 
 GetE returns the E field if non-nil, zero value otherwise.
 
 ### GetEOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetEOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetEOk() (*string, bool)`
 
 GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetE
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetE(v string)`
+`func (o *AssetIndexResponseInner) SetE(v string)`
 
 SetE sets E field to given value.
 
 ### HasE
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasE() bool`
+`func (o *AssetIndexResponseInner) HasE() bool`
 
 HasE returns a boolean if a field has been set.
 
 ### GetE
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetE() int64`
+`func (o *AssetIndexResponseInner) GetE() int64`
 
 GetE returns the E field if non-nil, zero value otherwise.
 
 ### GetEOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetEOk() (*int64, bool)`
+`func (o *AssetIndexResponseInner) GetEOk() (*int64, bool)`
 
 GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetE
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetE(v int64)`
+`func (o *AssetIndexResponseInner) SetE(v int64)`
 
 SetE sets E field to given value.
 
 ### HasE
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasE() bool`
+`func (o *AssetIndexResponseInner) HasE() bool`
 
 HasE returns a boolean if a field has been set.
 
 ### GetS
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetS() string`
+`func (o *AssetIndexResponseInner) GetS() string`
 
 GetS returns the S field if non-nil, zero value otherwise.
 
 ### GetSOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetSOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetSOk() (*string, bool)`
 
 GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetS
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetS(v string)`
+`func (o *AssetIndexResponseInner) SetS(v string)`
 
 SetS sets S field to given value.
 
 ### HasS
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasS() bool`
+`func (o *AssetIndexResponseInner) HasS() bool`
 
 HasS returns a boolean if a field has been set.
 
 ### GetI
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetI() string`
+`func (o *AssetIndexResponseInner) GetI() string`
 
 GetI returns the I field if non-nil, zero value otherwise.
 
 ### GetIOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetIOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetIOk() (*string, bool)`
 
 GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetI
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetI(v string)`
+`func (o *AssetIndexResponseInner) SetI(v string)`
 
 SetI sets I field to given value.
 
 ### HasI
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasI() bool`
+`func (o *AssetIndexResponseInner) HasI() bool`
 
 HasI returns a boolean if a field has been set.
 
 ### GetB
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetB() string`
+`func (o *AssetIndexResponseInner) GetB() string`
 
 GetB returns the B field if non-nil, zero value otherwise.
 
 ### GetBOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetBOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetBOk() (*string, bool)`
 
 GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetB
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetB(v string)`
+`func (o *AssetIndexResponseInner) SetB(v string)`
 
 SetB sets B field to given value.
 
 ### HasB
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasB() bool`
+`func (o *AssetIndexResponseInner) HasB() bool`
 
 HasB returns a boolean if a field has been set.
 
 ### GetA
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetA() string`
+`func (o *AssetIndexResponseInner) GetA() string`
 
 GetA returns the A field if non-nil, zero value otherwise.
 
 ### GetAOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetAOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetAOk() (*string, bool)`
 
 GetAOk returns a tuple with the A field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetA
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetA(v string)`
+`func (o *AssetIndexResponseInner) SetA(v string)`
 
 SetA sets A field to given value.
 
 ### HasA
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasA() bool`
+`func (o *AssetIndexResponseInner) HasA() bool`
 
 HasA returns a boolean if a field has been set.
 
 ### GetB
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetB() string`
+`func (o *AssetIndexResponseInner) GetB() string`
 
 GetB returns the B field if non-nil, zero value otherwise.
 
 ### GetBOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetBOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetBOk() (*string, bool)`
 
 GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetB
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetB(v string)`
+`func (o *AssetIndexResponseInner) SetB(v string)`
 
 SetB sets B field to given value.
 
 ### HasB
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasB() bool`
+`func (o *AssetIndexResponseInner) HasB() bool`
 
 HasB returns a boolean if a field has been set.
 
 ### GetA
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetA() string`
+`func (o *AssetIndexResponseInner) GetA() string`
 
 GetA returns the A field if non-nil, zero value otherwise.
 
 ### GetAOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetAOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetAOk() (*string, bool)`
 
 GetAOk returns a tuple with the A field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetA
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetA(v string)`
+`func (o *AssetIndexResponseInner) SetA(v string)`
 
 SetA sets A field to given value.
 
 ### HasA
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasA() bool`
+`func (o *AssetIndexResponseInner) HasA() bool`
 
 HasA returns a boolean if a field has been set.
 
 ### GetQ
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetQ() string`
+`func (o *AssetIndexResponseInner) GetQ() string`
 
 GetQ returns the Q field if non-nil, zero value otherwise.
 
 ### GetQOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetQOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetQOk() (*string, bool)`
 
 GetQOk returns a tuple with the Q field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQ
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetQ(v string)`
+`func (o *AssetIndexResponseInner) SetQ(v string)`
 
 SetQ sets Q field to given value.
 
 ### HasQ
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasQ() bool`
+`func (o *AssetIndexResponseInner) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
 
 ### GetG
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetG() string`
+`func (o *AssetIndexResponseInner) GetG() string`
 
 GetG returns the G field if non-nil, zero value otherwise.
 
 ### GetGOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetGOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetGOk() (*string, bool)`
 
 GetGOk returns a tuple with the G field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetG
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetG(v string)`
+`func (o *AssetIndexResponseInner) SetG(v string)`
 
 SetG sets G field to given value.
 
 ### HasG
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasG() bool`
+`func (o *AssetIndexResponseInner) HasG() bool`
 
 HasG returns a boolean if a field has been set.
 
 ### GetQ
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetQ() string`
+`func (o *AssetIndexResponseInner) GetQ() string`
 
 GetQ returns the Q field if non-nil, zero value otherwise.
 
 ### GetQOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetQOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetQOk() (*string, bool)`
 
 GetQOk returns a tuple with the Q field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQ
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetQ(v string)`
+`func (o *AssetIndexResponseInner) SetQ(v string)`
 
 SetQ sets Q field to given value.
 
 ### HasQ
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasQ() bool`
+`func (o *AssetIndexResponseInner) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
 
 ### GetG
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetG() string`
+`func (o *AssetIndexResponseInner) GetG() string`
 
 GetG returns the G field if non-nil, zero value otherwise.
 
 ### GetGOk
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) GetGOk() (*string, bool)`
+`func (o *AssetIndexResponseInner) GetGOk() (*string, bool)`
 
 GetGOk returns a tuple with the G field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetG
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) SetG(v string)`
+`func (o *AssetIndexResponseInner) SetG(v string)`
 
 SetG sets G field to given value.
 
 ### HasG
 
-`func (o *MultiAssetsModeAssetIndexResponseInner) HasG() bool`
+`func (o *AssetIndexResponseInner) HasG() bool`
 
 HasG returns a boolean if a field has been set.
 

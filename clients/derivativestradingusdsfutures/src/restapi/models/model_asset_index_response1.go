@@ -12,11 +12,11 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// checks if the MultiAssetsModeAssetIndexResponse2Inner type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &MultiAssetsModeAssetIndexResponse2Inner{}
+// checks if the AssetIndexResponse1 type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &AssetIndexResponse1{}
 
-// MultiAssetsModeAssetIndexResponse2Inner struct for MultiAssetsModeAssetIndexResponse2Inner
-type MultiAssetsModeAssetIndexResponse2Inner struct {
+// AssetIndexResponse1 struct for AssetIndexResponse1
+type AssetIndexResponse1 struct {
 	Symbol                *string `json:"symbol,omitempty"`
 	Time                  *int64  `json:"time,omitempty"`
 	Index                 *string `json:"index,omitempty"`
@@ -31,27 +31,27 @@ type MultiAssetsModeAssetIndexResponse2Inner struct {
 	AdditionalProperties  map[string]interface{}
 }
 
-type _MultiAssetsModeAssetIndexResponse2Inner MultiAssetsModeAssetIndexResponse2Inner
+type _AssetIndexResponse1 AssetIndexResponse1
 
-// NewMultiAssetsModeAssetIndexResponse2Inner instantiates a new MultiAssetsModeAssetIndexResponse2Inner object
+// NewAssetIndexResponse1 instantiates a new AssetIndexResponse1 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMultiAssetsModeAssetIndexResponse2Inner() *MultiAssetsModeAssetIndexResponse2Inner {
-	this := MultiAssetsModeAssetIndexResponse2Inner{}
+func NewAssetIndexResponse1() *AssetIndexResponse1 {
+	this := AssetIndexResponse1{}
 	return &this
 }
 
-// NewMultiAssetsModeAssetIndexResponse2InnerWithDefaults instantiates a new MultiAssetsModeAssetIndexResponse2Inner object
+// NewAssetIndexResponse1WithDefaults instantiates a new AssetIndexResponse1 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMultiAssetsModeAssetIndexResponse2InnerWithDefaults() *MultiAssetsModeAssetIndexResponse2Inner {
-	this := MultiAssetsModeAssetIndexResponse2Inner{}
+func NewAssetIndexResponse1WithDefaults() *AssetIndexResponse1 {
+	this := AssetIndexResponse1{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetSymbol() string {
+func (o *AssetIndexResponse1) GetSymbol() string {
 	if o == nil || common.IsNil(o.Symbol) {
 		var ret string
 		return ret
@@ -61,7 +61,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetSymbolOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetSymbolOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Symbol) {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetSymbolOk() (*string, bool) 
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasSymbol() bool {
+func (o *AssetIndexResponse1) HasSymbol() bool {
 	if o != nil && !common.IsNil(o.Symbol) {
 		return true
 	}
@@ -78,12 +78,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetSymbol(v string) {
+func (o *AssetIndexResponse1) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetTime() int64 {
+func (o *AssetIndexResponse1) GetTime() int64 {
 	if o == nil || common.IsNil(o.Time) {
 		var ret int64
 		return ret
@@ -93,7 +93,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetTime() int64 {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetTimeOk() (*int64, bool) {
+func (o *AssetIndexResponse1) GetTimeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Time) {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetTimeOk() (*int64, bool) {
 }
 
 // HasTime returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasTime() bool {
+func (o *AssetIndexResponse1) HasTime() bool {
 	if o != nil && !common.IsNil(o.Time) {
 		return true
 	}
@@ -110,12 +110,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasTime() bool {
 }
 
 // SetTime gets a reference to the given int64 and assigns it to the Time field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetTime(v int64) {
+func (o *AssetIndexResponse1) SetTime(v int64) {
 	o.Time = &v
 }
 
 // GetIndex returns the Index field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetIndex() string {
+func (o *AssetIndexResponse1) GetIndex() string {
 	if o == nil || common.IsNil(o.Index) {
 		var ret string
 		return ret
@@ -125,7 +125,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetIndex() string {
 
 // GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetIndexOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetIndexOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Index) {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetIndexOk() (*string, bool) {
 }
 
 // HasIndex returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasIndex() bool {
+func (o *AssetIndexResponse1) HasIndex() bool {
 	if o != nil && !common.IsNil(o.Index) {
 		return true
 	}
@@ -142,12 +142,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasIndex() bool {
 }
 
 // SetIndex gets a reference to the given string and assigns it to the Index field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetIndex(v string) {
+func (o *AssetIndexResponse1) SetIndex(v string) {
 	o.Index = &v
 }
 
 // GetBidBuffer returns the BidBuffer field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidBuffer() string {
+func (o *AssetIndexResponse1) GetBidBuffer() string {
 	if o == nil || common.IsNil(o.BidBuffer) {
 		var ret string
 		return ret
@@ -157,7 +157,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidBuffer() string {
 
 // GetBidBufferOk returns a tuple with the BidBuffer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidBufferOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetBidBufferOk() (*string, bool) {
 	if o == nil || common.IsNil(o.BidBuffer) {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidBufferOk() (*string, boo
 }
 
 // HasBidBuffer returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasBidBuffer() bool {
+func (o *AssetIndexResponse1) HasBidBuffer() bool {
 	if o != nil && !common.IsNil(o.BidBuffer) {
 		return true
 	}
@@ -174,12 +174,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasBidBuffer() bool {
 }
 
 // SetBidBuffer gets a reference to the given string and assigns it to the BidBuffer field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetBidBuffer(v string) {
+func (o *AssetIndexResponse1) SetBidBuffer(v string) {
 	o.BidBuffer = &v
 }
 
 // GetAskBuffer returns the AskBuffer field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskBuffer() string {
+func (o *AssetIndexResponse1) GetAskBuffer() string {
 	if o == nil || common.IsNil(o.AskBuffer) {
 		var ret string
 		return ret
@@ -189,7 +189,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskBuffer() string {
 
 // GetAskBufferOk returns a tuple with the AskBuffer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskBufferOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetAskBufferOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AskBuffer) {
 		return nil, false
 	}
@@ -197,7 +197,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskBufferOk() (*string, boo
 }
 
 // HasAskBuffer returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAskBuffer() bool {
+func (o *AssetIndexResponse1) HasAskBuffer() bool {
 	if o != nil && !common.IsNil(o.AskBuffer) {
 		return true
 	}
@@ -206,12 +206,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAskBuffer() bool {
 }
 
 // SetAskBuffer gets a reference to the given string and assigns it to the AskBuffer field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetAskBuffer(v string) {
+func (o *AssetIndexResponse1) SetAskBuffer(v string) {
 	o.AskBuffer = &v
 }
 
 // GetBidRate returns the BidRate field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidRate() string {
+func (o *AssetIndexResponse1) GetBidRate() string {
 	if o == nil || common.IsNil(o.BidRate) {
 		var ret string
 		return ret
@@ -221,7 +221,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidRate() string {
 
 // GetBidRateOk returns a tuple with the BidRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidRateOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetBidRateOk() (*string, bool) {
 	if o == nil || common.IsNil(o.BidRate) {
 		return nil, false
 	}
@@ -229,7 +229,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetBidRateOk() (*string, bool)
 }
 
 // HasBidRate returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasBidRate() bool {
+func (o *AssetIndexResponse1) HasBidRate() bool {
 	if o != nil && !common.IsNil(o.BidRate) {
 		return true
 	}
@@ -238,12 +238,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasBidRate() bool {
 }
 
 // SetBidRate gets a reference to the given string and assigns it to the BidRate field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetBidRate(v string) {
+func (o *AssetIndexResponse1) SetBidRate(v string) {
 	o.BidRate = &v
 }
 
 // GetAskRate returns the AskRate field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskRate() string {
+func (o *AssetIndexResponse1) GetAskRate() string {
 	if o == nil || common.IsNil(o.AskRate) {
 		var ret string
 		return ret
@@ -253,7 +253,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskRate() string {
 
 // GetAskRateOk returns a tuple with the AskRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskRateOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetAskRateOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AskRate) {
 		return nil, false
 	}
@@ -261,7 +261,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAskRateOk() (*string, bool)
 }
 
 // HasAskRate returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAskRate() bool {
+func (o *AssetIndexResponse1) HasAskRate() bool {
 	if o != nil && !common.IsNil(o.AskRate) {
 		return true
 	}
@@ -270,12 +270,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAskRate() bool {
 }
 
 // SetAskRate gets a reference to the given string and assigns it to the AskRate field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetAskRate(v string) {
+func (o *AssetIndexResponse1) SetAskRate(v string) {
 	o.AskRate = &v
 }
 
 // GetAutoExchangeBidBuffer returns the AutoExchangeBidBuffer field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidBuffer() string {
+func (o *AssetIndexResponse1) GetAutoExchangeBidBuffer() string {
 	if o == nil || common.IsNil(o.AutoExchangeBidBuffer) {
 		var ret string
 		return ret
@@ -285,7 +285,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidBuffer() str
 
 // GetAutoExchangeBidBufferOk returns a tuple with the AutoExchangeBidBuffer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidBufferOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetAutoExchangeBidBufferOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AutoExchangeBidBuffer) {
 		return nil, false
 	}
@@ -293,7 +293,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidBufferOk() (
 }
 
 // HasAutoExchangeBidBuffer returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeBidBuffer() bool {
+func (o *AssetIndexResponse1) HasAutoExchangeBidBuffer() bool {
 	if o != nil && !common.IsNil(o.AutoExchangeBidBuffer) {
 		return true
 	}
@@ -302,12 +302,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeBidBuffer() boo
 }
 
 // SetAutoExchangeBidBuffer gets a reference to the given string and assigns it to the AutoExchangeBidBuffer field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetAutoExchangeBidBuffer(v string) {
+func (o *AssetIndexResponse1) SetAutoExchangeBidBuffer(v string) {
 	o.AutoExchangeBidBuffer = &v
 }
 
 // GetAutoExchangeAskBuffer returns the AutoExchangeAskBuffer field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskBuffer() string {
+func (o *AssetIndexResponse1) GetAutoExchangeAskBuffer() string {
 	if o == nil || common.IsNil(o.AutoExchangeAskBuffer) {
 		var ret string
 		return ret
@@ -317,7 +317,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskBuffer() str
 
 // GetAutoExchangeAskBufferOk returns a tuple with the AutoExchangeAskBuffer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskBufferOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetAutoExchangeAskBufferOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AutoExchangeAskBuffer) {
 		return nil, false
 	}
@@ -325,7 +325,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskBufferOk() (
 }
 
 // HasAutoExchangeAskBuffer returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeAskBuffer() bool {
+func (o *AssetIndexResponse1) HasAutoExchangeAskBuffer() bool {
 	if o != nil && !common.IsNil(o.AutoExchangeAskBuffer) {
 		return true
 	}
@@ -334,12 +334,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeAskBuffer() boo
 }
 
 // SetAutoExchangeAskBuffer gets a reference to the given string and assigns it to the AutoExchangeAskBuffer field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetAutoExchangeAskBuffer(v string) {
+func (o *AssetIndexResponse1) SetAutoExchangeAskBuffer(v string) {
 	o.AutoExchangeAskBuffer = &v
 }
 
 // GetAutoExchangeBidRate returns the AutoExchangeBidRate field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidRate() string {
+func (o *AssetIndexResponse1) GetAutoExchangeBidRate() string {
 	if o == nil || common.IsNil(o.AutoExchangeBidRate) {
 		var ret string
 		return ret
@@ -349,7 +349,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidRate() strin
 
 // GetAutoExchangeBidRateOk returns a tuple with the AutoExchangeBidRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidRateOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetAutoExchangeBidRateOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AutoExchangeBidRate) {
 		return nil, false
 	}
@@ -357,7 +357,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeBidRateOk() (*s
 }
 
 // HasAutoExchangeBidRate returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeBidRate() bool {
+func (o *AssetIndexResponse1) HasAutoExchangeBidRate() bool {
 	if o != nil && !common.IsNil(o.AutoExchangeBidRate) {
 		return true
 	}
@@ -366,12 +366,12 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeBidRate() bool 
 }
 
 // SetAutoExchangeBidRate gets a reference to the given string and assigns it to the AutoExchangeBidRate field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetAutoExchangeBidRate(v string) {
+func (o *AssetIndexResponse1) SetAutoExchangeBidRate(v string) {
 	o.AutoExchangeBidRate = &v
 }
 
 // GetAutoExchangeAskRate returns the AutoExchangeAskRate field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskRate() string {
+func (o *AssetIndexResponse1) GetAutoExchangeAskRate() string {
 	if o == nil || common.IsNil(o.AutoExchangeAskRate) {
 		var ret string
 		return ret
@@ -381,7 +381,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskRate() strin
 
 // GetAutoExchangeAskRateOk returns a tuple with the AutoExchangeAskRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskRateOk() (*string, bool) {
+func (o *AssetIndexResponse1) GetAutoExchangeAskRateOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AutoExchangeAskRate) {
 		return nil, false
 	}
@@ -389,7 +389,7 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) GetAutoExchangeAskRateOk() (*s
 }
 
 // HasAutoExchangeAskRate returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeAskRate() bool {
+func (o *AssetIndexResponse1) HasAutoExchangeAskRate() bool {
 	if o != nil && !common.IsNil(o.AutoExchangeAskRate) {
 		return true
 	}
@@ -398,11 +398,11 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) HasAutoExchangeAskRate() bool 
 }
 
 // SetAutoExchangeAskRate gets a reference to the given string and assigns it to the AutoExchangeAskRate field.
-func (o *MultiAssetsModeAssetIndexResponse2Inner) SetAutoExchangeAskRate(v string) {
+func (o *AssetIndexResponse1) SetAutoExchangeAskRate(v string) {
 	o.AutoExchangeAskRate = &v
 }
 
-func (o MultiAssetsModeAssetIndexResponse2Inner) MarshalJSON() ([]byte, error) {
+func (o AssetIndexResponse1) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -410,7 +410,7 @@ func (o MultiAssetsModeAssetIndexResponse2Inner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MultiAssetsModeAssetIndexResponse2Inner) ToMap() (map[string]interface{}, error) {
+func (o AssetIndexResponse1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
@@ -453,16 +453,16 @@ func (o MultiAssetsModeAssetIndexResponse2Inner) ToMap() (map[string]interface{}
 	return toSerialize, nil
 }
 
-func (o *MultiAssetsModeAssetIndexResponse2Inner) UnmarshalJSON(data []byte) (err error) {
-	varMultiAssetsModeAssetIndexResponse2Inner := _MultiAssetsModeAssetIndexResponse2Inner{}
+func (o *AssetIndexResponse1) UnmarshalJSON(data []byte) (err error) {
+	varAssetIndexResponse1 := _AssetIndexResponse1{}
 
-	err = json.Unmarshal(data, &varMultiAssetsModeAssetIndexResponse2Inner)
+	err = json.Unmarshal(data, &varAssetIndexResponse1)
 
 	if err != nil {
 		return err
 	}
 
-	*o = MultiAssetsModeAssetIndexResponse2Inner(varMultiAssetsModeAssetIndexResponse2Inner)
+	*o = AssetIndexResponse1(varAssetIndexResponse1)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -484,38 +484,38 @@ func (o *MultiAssetsModeAssetIndexResponse2Inner) UnmarshalJSON(data []byte) (er
 	return err
 }
 
-type NullableMultiAssetsModeAssetIndexResponse2Inner struct {
-	value *MultiAssetsModeAssetIndexResponse2Inner
+type NullableAssetIndexResponse1 struct {
+	value *AssetIndexResponse1
 	isSet bool
 }
 
-func (v NullableMultiAssetsModeAssetIndexResponse2Inner) Get() *MultiAssetsModeAssetIndexResponse2Inner {
+func (v NullableAssetIndexResponse1) Get() *AssetIndexResponse1 {
 	return v.value
 }
 
-func (v *NullableMultiAssetsModeAssetIndexResponse2Inner) Set(val *MultiAssetsModeAssetIndexResponse2Inner) {
+func (v *NullableAssetIndexResponse1) Set(val *AssetIndexResponse1) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMultiAssetsModeAssetIndexResponse2Inner) IsSet() bool {
+func (v NullableAssetIndexResponse1) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMultiAssetsModeAssetIndexResponse2Inner) Unset() {
+func (v *NullableAssetIndexResponse1) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMultiAssetsModeAssetIndexResponse2Inner(val *MultiAssetsModeAssetIndexResponse2Inner) *NullableMultiAssetsModeAssetIndexResponse2Inner {
-	return &NullableMultiAssetsModeAssetIndexResponse2Inner{value: val, isSet: true}
+func NewNullableAssetIndexResponse1(val *AssetIndexResponse1) *NullableAssetIndexResponse1 {
+	return &NullableAssetIndexResponse1{value: val, isSet: true}
 }
 
-func (v NullableMultiAssetsModeAssetIndexResponse2Inner) MarshalJSON() ([]byte, error) {
+func (v NullableAssetIndexResponse1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMultiAssetsModeAssetIndexResponse2Inner) UnmarshalJSON(src []byte) error {
+func (v *NullableAssetIndexResponse1) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

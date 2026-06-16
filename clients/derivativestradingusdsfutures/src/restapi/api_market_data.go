@@ -72,6 +72,60 @@ func (a *MarketDataAPIService) AdlRiskExecute(r ApiAdlRiskRequest) (*common.Rest
 	return resp, nil
 }
 
+type ApiAssetIndexRequest struct {
+	ctx        context.Context
+	ApiService *MarketDataAPIService
+	symbol     *string
+}
+
+func (r ApiAssetIndexRequest) Symbol(symbol string) ApiAssetIndexRequest {
+	r.symbol = &symbol
+	return r
+}
+
+func (r ApiAssetIndexRequest) Execute() (*common.RestApiResponse[models.AssetIndexResponse], error) {
+	return r.ApiService.AssetIndexExecute(r)
+}
+
+/*
+AssetIndex Asset Index
+Get /fapi/v1/assetIndex
+
+https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Asset-Index
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@return ApiAssetIndexRequest
+*/
+func (a *MarketDataAPIService) AssetIndex(ctx context.Context) ApiAssetIndexRequest {
+	return ApiAssetIndexRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AssetIndexResponse
+func (a *MarketDataAPIService) AssetIndexExecute(r ApiAssetIndexRequest) (*common.RestApiResponse[models.AssetIndexResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/fapi/v1/assetIndex"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	}
+
+	resp, err := SendRequest[models.AssetIndexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiBasisRequest struct {
 	ctx          context.Context
 	ApiService   *MarketDataAPIService
@@ -83,6 +137,7 @@ type ApiBasisRequest struct {
 	endTime      *int64
 }
 
+// After CM migration, accepts both UM and CM pair values.
 func (r ApiBasisRequest) Pair(pair string) ApiBasisRequest {
 	r.pair = &pair
 	return r
@@ -126,7 +181,7 @@ Get /futures/data/basis
 https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Basis
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param pair -
+@param pair -  After CM migration, accepts both UM and CM pair values.
 @param contractType -
 @param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
 @param limit -  Default 100; max 1000
@@ -388,6 +443,7 @@ type ApiContinuousContractKlineCandlestickDataRequest struct {
 	limit        *int64
 }
 
+// After CM migration, accepts both UM and CM pair values.
 func (r ApiContinuousContractKlineCandlestickDataRequest) Pair(pair string) ApiContinuousContractKlineCandlestickDataRequest {
 	r.pair = &pair
 	return r
@@ -430,7 +486,7 @@ Get /fapi/v1/continuousKlines
 https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Continuous-Contract-Kline-Candlestick-Data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param pair -
+@param pair -  After CM migration, accepts both UM and CM pair values.
 @param contractType -
 @param interval -
 @param startTime -
@@ -667,6 +723,7 @@ type ApiIndexPriceKlineCandlestickDataRequest struct {
 	limit      *int64
 }
 
+// After CM migration, accepts both UM and CM pair values.
 func (r ApiIndexPriceKlineCandlestickDataRequest) Pair(pair string) ApiIndexPriceKlineCandlestickDataRequest {
 	r.pair = &pair
 	return r
@@ -704,7 +761,7 @@ Get /fapi/v1/indexPriceKlines
 https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Price-Kline-Candlestick-Data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param pair -
+@param pair -  After CM migration, accepts both UM and CM pair values.
 @param interval -
 @param startTime -
 @param endTime -
@@ -1097,60 +1154,6 @@ func (a *MarketDataAPIService) MarkPriceKlineCandlestickDataExecute(r ApiMarkPri
 	}
 
 	resp, err := SendRequest[models.MarkPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
-	if err != nil || resp == nil {
-		return nil, err
-	}
-
-	return resp, nil
-}
-
-type ApiMultiAssetsModeAssetIndexRequest struct {
-	ctx        context.Context
-	ApiService *MarketDataAPIService
-	symbol     *string
-}
-
-func (r ApiMultiAssetsModeAssetIndexRequest) Symbol(symbol string) ApiMultiAssetsModeAssetIndexRequest {
-	r.symbol = &symbol
-	return r
-}
-
-func (r ApiMultiAssetsModeAssetIndexRequest) Execute() (*common.RestApiResponse[models.MultiAssetsModeAssetIndexResponse], error) {
-	return r.ApiService.MultiAssetsModeAssetIndexExecute(r)
-}
-
-/*
-MultiAssetsModeAssetIndex Multi-Assets Mode Asset Index
-Get /fapi/v1/assetIndex
-
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Multi-Assets-Mode-Asset-Index
-
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@return ApiMultiAssetsModeAssetIndexRequest
-*/
-func (a *MarketDataAPIService) MultiAssetsModeAssetIndex(ctx context.Context) ApiMultiAssetsModeAssetIndexRequest {
-	return ApiMultiAssetsModeAssetIndexRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Execute executes the request
-//
-//	@return MultiAssetsModeAssetIndexResponse
-func (a *MarketDataAPIService) MultiAssetsModeAssetIndexExecute(r ApiMultiAssetsModeAssetIndexRequest) (*common.RestApiResponse[models.MultiAssetsModeAssetIndexResponse], error) {
-	localVarHTTPMethod := http.MethodGet
-	localVarPath := a.client.cfg.BasePath + "/fapi/v1/assetIndex"
-
-	localVarQueryParams := url.Values{}
-	localVarBodyParameters := make(map[string]interface{})
-
-	if r.symbol != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
-	}
-
-	resp, err := SendRequest[models.MultiAssetsModeAssetIndexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1562,6 +1565,7 @@ type ApiQuarterlyContractSettlementPriceRequest struct {
 	pair       *string
 }
 
+// After CM migration, accepts both UM and CM pair values.
 func (r ApiQuarterlyContractSettlementPriceRequest) Pair(pair string) ApiQuarterlyContractSettlementPriceRequest {
 	r.pair = &pair
 	return r
@@ -1578,7 +1582,7 @@ Get /futures/data/delivery-price
 https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Delivery-Price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param pair -
+@param pair -  After CM migration, accepts both UM and CM pair values.
 @return ApiQuarterlyContractSettlementPriceRequest
 */
 func (a *MarketDataAPIService) QuarterlyContractSettlementPrice(ctx context.Context) ApiQuarterlyContractSettlementPriceRequest {

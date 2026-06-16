@@ -27,7 +27,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"aggTrade","E":123456789,"s":"BTCUSDT","a":5933014,"p":"0.001","q":"100","nq":"100","f":100,"l":105,"T":123456785,"m":true}`
+		mockedJSON := `{"e":"aggTrade","E":123456789,"s":"BTCUSDT","a":5933014,"p":"0.001","q":"100","nq":"100","f":100,"l":105,"T":123456785,"m":true,"st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.AggregateTradeStreams().Symbol("btcusdt").Execute()
@@ -136,7 +136,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"forceOrder","E":1568014460893,"o":{"s":"BTCUSDT","S":"SELL","o":"LIMIT","f":"IOC","q":"0.014","p":"9910","ap":"9910","X":"FILLED","l":"0.014","z":"0.014","T":1568014460893}}`
+		mockedJSON := `{"e":"forceOrder","E":1568014460893,"o":{"s":"BTCUSDT","S":"SELL","o":"LIMIT","f":"IOC","q":"0.014","p":"9910","ap":"9910","X":"FILLED","l":"0.014","z":"0.014","T":1568014460893},"ps":"BTCUSDT","st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.AllMarketLiquidationOrderStreams().Execute()
@@ -228,7 +228,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `[{"e":"24hrMiniTicker","E":123456789,"s":"BTCUSDT","c":"0.0025","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18"}]`
+		mockedJSON := `[{"e":"24hrMiniTicker","E":123456789,"s":"BTCUSDT","c":"0.0025","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","ps":"BTCUSDT","st":1}]`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.AllMarketMiniTickersStream().Execute()
@@ -320,7 +320,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `[{"e":"24hrTicker","E":123456789,"s":"BTCUSDT","p":"0.0015","P":"250.00","w":"0.0018","c":"0.0025","Q":"10","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","O":0,"C":86400000,"F":0,"L":18150,"n":18151}]`
+		mockedJSON := `[{"e":"24hrTicker","E":123456789,"s":"BTCUSDT","p":"0.0015","P":"250.00","w":"0.0018","c":"0.0025","Q":"10","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","O":0,"C":86400000,"F":0,"L":18150,"n":18151,"ps":"BTCUSDT","st":1}]`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.AllMarketTickersStreams().Execute()
@@ -380,6 +380,98 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.AllMarketTickersStreams().Execute()
+		require.NotNil(t, resp)
+		require.NoError(t, err)
+
+		done := make(chan struct{})
+		var gotErr error
+
+		resp.OnError(func(err error) {
+			gotErr = err
+			close(done)
+		})
+
+		conn.ErrorChan <- errors.New("Invalid JSON: expected value at line 1 column 30")
+
+		select {
+		case <-done:
+		case <-time.After(time.Second):
+			t.Fatal("timeout waiting for error callback")
+		}
+
+		require.EqualError(t, gotErr, "Invalid JSON: expected value at line 1 column 30")
+	})
+	t.Run("Test MarketAPI AssetIndex Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketStreams()
+		mockClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
+			client.WithWebsocketStreams(cfg),
+		)
+		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		mockedJSON := `[{"e":"assetIndexUpdate","E":1686749230000,"s":"ADAUSD","i":"0.27462452","b":"0.10000000","a":"0.10000000","B":"0.24716207","A":"0.30208698","q":"0.05000000","g":"0.05000000","Q":"0.26089330","G":"0.28835575"},{"e":"assetIndexUpdate","E":1686749230000,"s":"USDTUSD","i":"0.99987691","b":"0.00010000","a":"0.00010000","B":"0.99977692","A":"0.99997689","q":"0.00010000","g":"0.00010000","Q":"0.99977692","G":"0.99997689"}]`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		resp, err := mockClient.WebsocketStreams.MarketAPI.AssetIndex().Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.NotEmpty(t, mockWS.MessagesWritten)
+
+		require.IsType(t, &common.StreamHandler[models.AssetIndexResponse]{}, resp)
+		require.NotNil(t, resp.On)
+		require.NotNil(t, resp.Unsubscribe)
+
+		called := 0
+		var got models.AssetIndexResponse
+		mockCallback := func(msg models.AssetIndexResponse) {
+			called++
+			got = msg
+		}
+
+		resp.On("message", mockCallback)
+
+		if handlers, ok := conn.StreamCallbackMap[resp.Stream]; ok {
+			for _, handler := range handlers {
+				var rawData interface{}
+				if err := json.Unmarshal([]byte(mockedJSON), &rawData); err != nil {
+					t.Fatalf("Failed to unmarshal test data: %v", err)
+				}
+
+				var msgData map[string]interface{}
+				switch v := rawData.(type) {
+				case map[string]interface{}:
+					msgData = v
+				case []interface{}:
+					msgData = map[string]interface{}{"data": v}
+				default:
+					t.Fatalf("Unexpected JSON type: %T", v)
+				}
+
+				handlerValue := reflect.ValueOf(handler)
+				handlerValue.Call([]reflect.Value{reflect.ValueOf(msgData)})
+			}
+		}
+
+		require.Equal(t, 1, called, "callback should be called once")
+		require.NotNil(t, got)
+	})
+
+	t.Run("Test MarketAPIService AssetIndex Server Error", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		conn.Listen()
+		conn.ErrorChan = make(chan error, 1)
+		cfg := common.NewConfigurationWebsocketStreams()
+		mockClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
+			client.WithWebsocketStreams(cfg),
+		)
+		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		resp, err := mockClient.WebsocketStreams.MarketAPI.AssetIndex().Execute()
 		require.NotNil(t, resp)
 		require.NoError(t, err)
 
@@ -664,7 +756,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"contractInfo","E":1669356423908,"s":"IOTAUSDT","ps":"IOTAUSDT","ct":"PERPETUAL","dt":4133404800000,"ot":1569398400000,"cs":"TRADING","bks":[{"bs":1,"bnf":0,"bnc":5000,"mmr":0.01,"cf":0,"mi":21,"ma":50},{"bs":2,"bnf":5000,"bnc":25000,"mmr":0.025,"cf":75,"mi":11,"ma":20}]}`
+		mockedJSON := `{"e":"contractInfo","E":1669356423908,"s":"IOTAUSDT","ct":"PERPETUAL","dt":4133404800000,"ot":1569398400000,"cs":"TRADING","bks":[{"bs":1,"bnf":0,"bnc":5000,"mmr":0.01,"cf":0,"mi":21,"ma":50},{"bs":2,"bnf":5000,"bnc":25000,"mmr":0.025,"cf":75,"mi":11,"ma":20}],"st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.ContractInfoStream().Execute()
@@ -756,7 +848,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"24hrMiniTicker","E":123456789,"s":"BTCUSDT","c":"0.0025","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18"}`
+		mockedJSON := `{"e":"24hrMiniTicker","E":123456789,"s":"BTCUSDT","c":"0.0025","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","ps":"BTCUSDT","st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.IndividualSymbolMiniTickerStream().Symbol("btcusdt").Execute()
@@ -865,7 +957,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"24hrTicker","E":123456789,"s":"BTCUSDT","p":"0.0015","P":"250.00","w":"0.0018","c":"0.0025","Q":"10","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","O":0,"C":86400000,"F":0,"L":18150,"n":18151}`
+		mockedJSON := `{"e":"24hrTicker","E":123456789,"s":"BTCUSDT","p":"0.0015","P":"250.00","w":"0.0018","c":"0.0025","Q":"10","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","O":0,"C":86400000,"F":0,"L":18150,"n":18151,"ps":"BTCUSDT","st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.IndividualSymbolTickerStreams().Symbol("btcusdt").Execute()
@@ -1209,7 +1301,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11794.15000000","ap":"11794.15000000","i":"11784.62659091","P":"11784.25641265","r":"0.00038167","T":1562306400000}`
+		mockedJSON := `{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11794.15000000","ap":"11794.15000000","i":"11784.62659091","P":"11784.25641265","r":"0.00038167","T":1562306400000,"st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.MarkPriceStream().Symbol("btcusdt").Execute()
@@ -1318,7 +1410,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `[{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11185.87786614","ap":"11185.87786614","i":"11784.62659091","P":"11784.25641265","r":"0.00030000","T":1562306400000}]`
+		mockedJSON := `[{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11185.87786614","ap":"11185.87786614","i":"11784.62659091","P":"11784.25641265","r":"0.00030000","T":1562306400000,"st":1}]`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.MarkPriceStreamForAllMarket().Execute()
@@ -1399,98 +1491,6 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 
 		require.EqualError(t, gotErr, "Invalid JSON: expected value at line 1 column 30")
 	})
-	t.Run("Test MarketAPI MultiAssetsModeAssetIndex Success", func(t *testing.T) {
-		conn, mockWS, cleanup := tests.SetupMockClient("123")
-		defer cleanup()
-
-		conn.Listen()
-		cfg := common.NewConfigurationWebsocketStreams()
-		mockClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
-			client.WithWebsocketStreams(cfg),
-		)
-		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
-
-		mockedJSON := `[{"e":"assetIndexUpdate","E":1686749230000,"s":"ADAUSD","i":"0.27462452","b":"0.10000000","a":"0.10000000","B":"0.24716207","A":"0.30208698","q":"0.05000000","g":"0.05000000","Q":"0.26089330","G":"0.28835575"},{"e":"assetIndexUpdate","E":1686749230000,"s":"USDTUSD","i":"0.99987691","b":"0.00010000","a":"0.00010000","B":"0.99977692","A":"0.99997689","q":"0.00010000","g":"0.00010000","Q":"0.99977692","G":"0.99997689"}]`
-		mockWS.QueueMessage([]byte(mockedJSON))
-
-		resp, err := mockClient.WebsocketStreams.MarketAPI.MultiAssetsModeAssetIndex().Execute()
-		require.NoError(t, err)
-		require.NotNil(t, resp)
-		require.NotEmpty(t, mockWS.MessagesWritten)
-
-		require.IsType(t, &common.StreamHandler[models.MultiAssetsModeAssetIndexResponse]{}, resp)
-		require.NotNil(t, resp.On)
-		require.NotNil(t, resp.Unsubscribe)
-
-		called := 0
-		var got models.MultiAssetsModeAssetIndexResponse
-		mockCallback := func(msg models.MultiAssetsModeAssetIndexResponse) {
-			called++
-			got = msg
-		}
-
-		resp.On("message", mockCallback)
-
-		if handlers, ok := conn.StreamCallbackMap[resp.Stream]; ok {
-			for _, handler := range handlers {
-				var rawData interface{}
-				if err := json.Unmarshal([]byte(mockedJSON), &rawData); err != nil {
-					t.Fatalf("Failed to unmarshal test data: %v", err)
-				}
-
-				var msgData map[string]interface{}
-				switch v := rawData.(type) {
-				case map[string]interface{}:
-					msgData = v
-				case []interface{}:
-					msgData = map[string]interface{}{"data": v}
-				default:
-					t.Fatalf("Unexpected JSON type: %T", v)
-				}
-
-				handlerValue := reflect.ValueOf(handler)
-				handlerValue.Call([]reflect.Value{reflect.ValueOf(msgData)})
-			}
-		}
-
-		require.Equal(t, 1, called, "callback should be called once")
-		require.NotNil(t, got)
-	})
-
-	t.Run("Test MarketAPIService MultiAssetsModeAssetIndex Server Error", func(t *testing.T) {
-		conn, _, cleanup := tests.SetupMockClient("123")
-		defer cleanup()
-
-		conn.Listen()
-		conn.ErrorChan = make(chan error, 1)
-		cfg := common.NewConfigurationWebsocketStreams()
-		mockClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
-			client.WithWebsocketStreams(cfg),
-		)
-		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
-
-		resp, err := mockClient.WebsocketStreams.MarketAPI.MultiAssetsModeAssetIndex().Execute()
-		require.NotNil(t, resp)
-		require.NoError(t, err)
-
-		done := make(chan struct{})
-		var gotErr error
-
-		resp.OnError(func(err error) {
-			gotErr = err
-			close(done)
-		})
-
-		conn.ErrorChan <- errors.New("Invalid JSON: expected value at line 1 column 30")
-
-		select {
-		case <-done:
-		case <-time.After(time.Second):
-			t.Fatal("timeout waiting for error callback")
-		}
-
-		require.EqualError(t, gotErr, "Invalid JSON: expected value at line 1 column 30")
-	})
 	t.Run("Test MarketAPI TradingSessionStream Success", func(t *testing.T) {
 		conn, mockWS, cleanup := tests.SetupMockClient("123")
 		defer cleanup()
@@ -1502,7 +1502,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"EquityUpdate","E":1765244143062,"t":1765242000000,"T":1765270800000,"S":"OVERNIGHT"}`
+		mockedJSON := `{"e":"KR_EquityUpdate","E":1779962686695,"t":1779958800000,"T":1780009200000,"S":"NO_TRADING"}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.TradingSessionStream().Execute()

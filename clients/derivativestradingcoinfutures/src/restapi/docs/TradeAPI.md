@@ -949,7 +949,7 @@ import (
 func main() {
 	symbol := "symbol_example" // string | 
 	amount := float32(1.0) // float32 | 
-	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | 
+	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
 	positionSide := models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth // PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -981,7 +981,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **amount** | **float32** |  | 
- **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) |  | 
+ **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) | **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.** | 
  **positionSide** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
  **recvWindow** | **int64** |  | 
 
@@ -1177,7 +1177,7 @@ import (
 func main() {
 	symbol := "symbol_example" // string | 
 	side := models.ModifyMultipleOrdersBatchOrdersParameterInnerSideBuy // ModifyMultipleOrdersBatchOrdersParameterInnerSide | `SELL`, `BUY`
-	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | 
+	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
 	positionSide := models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth // PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
 	timeInForce := models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForceGtc // PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce |  (optional)
 	quantity := float32(1.0) // float32 | quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
@@ -1189,7 +1189,7 @@ func main() {
 	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
 	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
 	workingType := models.PlaceMultipleOrdersBatchOrdersParameterInnerWorkingTypeMarkPrice // PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
-	priceProtect := "false" // string | \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
+	priceProtect := "false" // string | \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
 	newOrderRespType := models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespTypeAck // PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType | \"ACK\", \"RESULT\", default \"ACK\" (optional)
 	priceMatch := models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchNone // PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
 	selfTradePreventionMode := models.PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeNone // PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `EXPIRE_MAKER` (optional)
@@ -1223,7 +1223,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**ModifyMultipleOrdersBatchOrdersParameterInnerSide**](ModifyMultipleOrdersBatchOrdersParameterInnerSide.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) |  | 
+ **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) | **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.** | 
  **positionSide** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
  **timeInForce** | [**PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce.md) |  | 
  **quantity** | **float32** | quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
@@ -1235,7 +1235,7 @@ Name          | Type          | Description   | Notes
  **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
  **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
  **workingType** | [**PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType**](PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
- **priceProtect** | **string** | \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
+ **priceProtect** | **string** | \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
  **newOrderRespType** | [**PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
  **priceMatch** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch**](PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
  **selfTradePreventionMode** | [**PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60; | 

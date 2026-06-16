@@ -28,6 +28,7 @@ type AggregateTradeStreamsResponse struct {
 	Smalll               *int64  `json:"l,omitempty"`
 	T                    *int64  `json:"T,omitempty"`
 	Smallm               *bool   `json:"m,omitempty"`
+	Smallst              *int64  `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -402,6 +403,38 @@ func (o *AggregateTradeStreamsResponse) SetSmallm(v bool) {
 	o.Smallm = &v
 }
 
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *AggregateTradeStreamsResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AggregateTradeStreamsResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *AggregateTradeStreamsResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *AggregateTradeStreamsResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o AggregateTradeStreamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -445,6 +478,9 @@ func (o AggregateTradeStreamsResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallm) {
 		toSerialize["m"] = o.Smallm
 	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -478,6 +514,7 @@ func (o *AggregateTradeStreamsResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "l")
 		delete(additionalProperties, "T")
 		delete(additionalProperties, "m")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

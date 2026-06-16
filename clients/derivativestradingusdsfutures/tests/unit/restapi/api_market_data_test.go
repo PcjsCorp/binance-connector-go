@@ -78,6 +78,61 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test MarketDataAPIService AssetIndex Success", func(t *testing.T) {
+
+		mockedJSON := `{"symbol":"ADAUSD","time":1635740268004,"index":"1.92957370","bidBuffer":"0.10000000","askBuffer":"0.10000000","bidRate":"1.73661633","askRate":"2.12253107","autoExchangeBidBuffer":"0.05000000","autoExchangeAskBuffer":"0.05000000","autoExchangeBidRate":"1.83309501","autoExchangeAskRate":"2.02605238"}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/fapi/v1/assetIndex", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.AssetIndexResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketDataAPI.AssetIndex(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.AssetIndexResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.AssetIndexResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketDataAPIService AssetIndex Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketDataAPI.AssetIndex(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test MarketDataAPIService Basis Success", func(t *testing.T) {
 
 		mockedJSON := `[{"indexPrice":"34400.15945055","contractType":"PERPETUAL","basisRate":"0.0004","futuresPrice":"34414.10","annualizedBasisRate":"","basis":"13.94054945","pair":"BTCUSDT","timestamp":1698742800000}]`
@@ -265,7 +320,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 
 	t.Run("Test MarketDataAPIService CompressedAggregateTradesList Success", func(t *testing.T) {
 
-		mockedJSON := `[{"a":26129,"p":"0.01633102","q":"4.70443515","f":27781,"l":27781,"T":1498793709153,"m":true}]`
+		mockedJSON := `[{"a":26129,"p":"0.01633102","q":"4.70443515","nq":"100","f":27781,"l":27781,"T":1498793709153,"m":true}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/aggTrades", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
@@ -922,61 +977,6 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 		)
 
 		resp, err := apiClient.RestApi.MarketDataAPI.MarkPriceKlineCandlestickData(context.Background()).Execute()
-
-		require.Error(t, err)
-		require.Nil(t, resp)
-	})
-
-	t.Run("Test MarketDataAPIService MultiAssetsModeAssetIndex Success", func(t *testing.T) {
-
-		mockedJSON := `{"symbol":"ADAUSD","time":1635740268004,"index":"1.92957370","bidBuffer":"0.10000000","askBuffer":"0.10000000","bidRate":"1.73661633","askRate":"2.12253107","autoExchangeBidBuffer":"0.05000000","autoExchangeAskBuffer":"0.05000000","autoExchangeBidRate":"1.83309501","autoExchangeAskRate":"2.02605238"}`
-		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			require.Equal(t, "/fapi/v1/assetIndex", r.URL.Path)
-			w.Header().Set("Content-Type", "application/json")
-			_, _ = w.Write([]byte(mockedJSON))
-		}))
-		defer mockServer.Close()
-
-		var expected models.MultiAssetsModeAssetIndexResponse
-		err := json.Unmarshal([]byte(mockedJSON), &expected)
-		require.NoError(t, err)
-
-		configuration := common.NewConfigurationRestAPI()
-		configuration.BasePath = mockServer.URL
-
-		apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
-			client.WithRestAPI(configuration),
-		)
-
-		resp, err := apiClient.RestApi.MarketDataAPI.MultiAssetsModeAssetIndex(context.Background()).Execute()
-		require.NoError(t, err)
-		require.NotNil(t, resp)
-		require.Equal(
-			t,
-			reflect.TypeOf(&common.RestApiResponse[models.MultiAssetsModeAssetIndexResponse]{}),
-			reflect.TypeOf(resp),
-		)
-		require.Equal(t, reflect.TypeOf(models.MultiAssetsModeAssetIndexResponse{}), reflect.TypeOf(resp.Data))
-		require.Equal(t, 200, resp.Status)
-		require.Equal(t, expected, resp.Data)
-	})
-
-	t.Run("Test MarketDataAPIService MultiAssetsModeAssetIndex Server Error", func(t *testing.T) {
-		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			http.Error(w, "internal error", http.StatusInternalServerError)
-		}))
-		defer mockServer.Close()
-
-		configuration := common.NewConfigurationRestAPI()
-		configuration.BasePath = mockServer.URL
-		configuration.Retries = 1
-		configuration.Backoff = 1
-
-		apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
-			client.WithRestAPI(configuration),
-		)
-
-		resp, err := apiClient.RestApi.MarketDataAPI.MultiAssetsModeAssetIndex(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)
@@ -2180,7 +2180,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 
 	t.Run("Test MarketDataAPIService TradingSchedule Success", func(t *testing.T) {
 
-		mockedJSON := `{"updateTime":1761286643918,"marketSchedules":{"EQUITY":{"sessions":[{"startTime":1761177600000,"endTime":1761206400000,"type":"OVERNIGHT"},{"startTime":1761206400000,"endTime":1761226200000,"type":"PRE_MARKET"}]},"COMMODITY":{"sessions":[{"startTime":1761724800000,"endTime":1761744600000,"type":"NO_TRADING"},{"startTime":1761744600000,"endTime":1761768000000,"type":"REGULAR"}]}}}`
+		mockedJSON := `{"updateTime":1761286643918,"marketSchedules":{"EQUITY":{"sessions":[{"startTime":1761177600000,"endTime":1761206400000,"type":"OVERNIGHT"},{"startTime":1761206400000,"endTime":1761226200000,"type":"PRE_MARKET"}]},"COMMODITY":{"sessions":[{"startTime":1761724800000,"endTime":1761744600000,"type":"NO_TRADING"},{"startTime":1761744600000,"endTime":1761768000000,"type":"REGULAR"}]},"KR_EQUITY":{"sessions":[{"startTime":1779958800000,"endTime":1780009200000,"type":"NO_TRADING"},{"startTime":1780009200000,"endTime":1780030800000,"type":"REGULAR"}]}}}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/tradingSchedule", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

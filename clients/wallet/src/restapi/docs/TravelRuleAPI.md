@@ -9,6 +9,8 @@ Method        | HTTP request  | Description
 [**DepositHistoryTravelRule**](TravelRuleAPI.md#DepositHistoryTravelRule) | **Get** /sapi/v1/localentity/deposit/history | Deposit History (for local entities that required travel rule) (supporting network) (USER_DATA)
 [**DepositHistoryV2**](TravelRuleAPI.md#DepositHistoryV2) | **Get** /sapi/v2/localentity/deposit/history | Deposit History V2 (for local entities that required travel rule) (supporting network) (USER_DATA)
 [**FetchAddressVerificationList**](TravelRuleAPI.md#FetchAddressVerificationList) | **Get** /sapi/v1/addressVerify/list | Fetch address verification list (USER_DATA)
+[**GetCountryList**](TravelRuleAPI.md#GetCountryList) | **Get** /sapi/v1/localentity/country/list | Get Country List (USER_DATA)
+[**GetRegionList**](TravelRuleAPI.md#GetRegionList) | **Get** /sapi/v1/localentity/region/list | Get Region List (USER_DATA)
 [**SubmitDepositQuestionnaire**](TravelRuleAPI.md#SubmitDepositQuestionnaire) | **Put** /sapi/v1/localentity/broker/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA)
 [**SubmitDepositQuestionnaireTravelRule**](TravelRuleAPI.md#SubmitDepositQuestionnaireTravelRule) | **Put** /sapi/v1/localentity/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA)
 [**SubmitDepositQuestionnaireV2**](TravelRuleAPI.md#SubmitDepositQuestionnaireV2) | **Put** /sapi/v2/localentity/deposit/provide-info | Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA)
@@ -404,6 +406,139 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**FetchAddressVerificationListResponse**](FetchAddressVerificationListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetCountryList
+
+> GetCountryListResponse GetCountryList(ctx).Execute()
+
+Get Country List (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TravelRuleAPI.GetCountryList(context.Background()).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TravelRuleAPI.GetCountryList``: %v\n", err)
+		return
+	}
+
+	// response from `GetCountryList`: GetCountryListResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCountryListResponse**](GetCountryListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetRegionList
+
+> GetRegionListResponse GetRegionList(ctx).CountryCode(countryCode).Execute()
+
+Get Region List (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	countryCode := "countryCode_example" // string | ISO 2-digit country code (from `Country List` API).
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TravelRuleAPI.GetRegionList(context.Background()).CountryCode(countryCode).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TravelRuleAPI.GetRegionList``: %v\n", err)
+		return
+	}
+
+	// response from `GetRegionList`: GetRegionListResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **countryCode** | **string** | ISO 2-digit country code (from &#x60;Country List&#x60; API). | 
+
+### Return type
+
+[**GetRegionListResponse**](GetRegionListResponse.md)
 
 ### Authorization
 

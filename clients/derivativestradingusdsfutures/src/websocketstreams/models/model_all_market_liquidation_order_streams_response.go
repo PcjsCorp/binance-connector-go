@@ -20,6 +20,8 @@ type AllMarketLiquidationOrderStreamsResponse struct {
 	Smalle               *string                                    `json:"e,omitempty"`
 	E                    *int64                                     `json:"E,omitempty"`
 	Smallo               *AllMarketLiquidationOrderStreamsResponseO `json:"o,omitempty"`
+	Smallps              *string                                    `json:"ps,omitempty"`
+	Smallst              *int64                                     `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +140,70 @@ func (o *AllMarketLiquidationOrderStreamsResponse) SetSmallo(v AllMarketLiquidat
 	o.Smallo = &v
 }
 
+// GetPs returns the Ps field value if set, zero value otherwise.
+func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallps() string {
+	if o == nil || common.IsNil(o.Smallps) {
+		var ret string
+		return ret
+	}
+	return *o.Smallps
+}
+
+// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallpsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallps) {
+		return nil, false
+	}
+	return o.Smallps, true
+}
+
+// HasPs returns a boolean if a field has been set.
+func (o *AllMarketLiquidationOrderStreamsResponse) HasSmallps() bool {
+	if o != nil && !common.IsNil(o.Smallps) {
+		return true
+	}
+
+	return false
+}
+
+// SetPs gets a reference to the given string and assigns it to the Ps field.
+func (o *AllMarketLiquidationOrderStreamsResponse) SetSmallps(v string) {
+	o.Smallps = &v
+}
+
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *AllMarketLiquidationOrderStreamsResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *AllMarketLiquidationOrderStreamsResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o AllMarketLiquidationOrderStreamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +222,12 @@ func (o AllMarketLiquidationOrderStreamsResponse) ToMap() (map[string]interface{
 	}
 	if !common.IsNil(o.Smallo) {
 		toSerialize["o"] = o.Smallo
+	}
+	if !common.IsNil(o.Smallps) {
+		toSerialize["ps"] = o.Smallps
+	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +254,8 @@ func (o *AllMarketLiquidationOrderStreamsResponse) UnmarshalJSON(data []byte) (e
 		delete(additionalProperties, "e")
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "o")
+		delete(additionalProperties, "ps")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

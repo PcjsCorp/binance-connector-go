@@ -254,7 +254,7 @@ func (r ApiGetVIPLoanInterestRateHistoryRequest) EndTime(endTime int64) ApiGetVI
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Page number, default 1, minimum 1
 func (r ApiGetVIPLoanInterestRateHistoryRequest) Current(current int64) ApiGetVIPLoanInterestRateHistoryRequest {
 	r.current = &current
 	return r
@@ -281,7 +281,7 @@ https://developers.binance.com/docs/vip_loan/market-data/Get-VIP-Loan-Interest-R
 @param recvWindow -
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
+@param current -  Page number, default 1, minimum 1
 @param limit -  Default: 10; max: 100
 @return ApiGetVIPLoanInterestRateHistoryRequest
 */
@@ -325,6 +325,105 @@ func (a *MarketDataAPIService) GetVIPLoanInterestRateHistoryExecute(r ApiGetVIPL
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 
 	resp, err := SendRequest[models.GetVIPLoanInterestRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiQueryVIPLoanFixedRateMarketRequest struct {
+	ctx        context.Context
+	ApiService *MarketDataAPIService
+	loanCoin   *string
+	duration   *int64
+	current    *int64
+	size       *int64
+	recvWindow *int64
+}
+
+func (r ApiQueryVIPLoanFixedRateMarketRequest) LoanCoin(loanCoin string) ApiQueryVIPLoanFixedRateMarketRequest {
+	r.loanCoin = &loanCoin
+	return r
+}
+
+// Duration in days, minimum 1
+func (r ApiQueryVIPLoanFixedRateMarketRequest) Duration(duration int64) ApiQueryVIPLoanFixedRateMarketRequest {
+	r.duration = &duration
+	return r
+}
+
+// Page number, default 1, minimum 1
+func (r ApiQueryVIPLoanFixedRateMarketRequest) Current(current int64) ApiQueryVIPLoanFixedRateMarketRequest {
+	r.current = &current
+	return r
+}
+
+// Page size, default 10, range [1, 100]
+func (r ApiQueryVIPLoanFixedRateMarketRequest) Size(size int64) ApiQueryVIPLoanFixedRateMarketRequest {
+	r.size = &size
+	return r
+}
+
+func (r ApiQueryVIPLoanFixedRateMarketRequest) RecvWindow(recvWindow int64) ApiQueryVIPLoanFixedRateMarketRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiQueryVIPLoanFixedRateMarketRequest) Execute() (*common.RestApiResponse[models.QueryVIPLoanFixedRateMarketResponse], error) {
+	return r.ApiService.QueryVIPLoanFixedRateMarketExecute(r)
+}
+
+/*
+QueryVIPLoanFixedRateMarket Query VIP Loan Fixed Rate Market(USER_DATA)
+Get /sapi/v1/loan/vip/fixed/market
+
+https://developers.binance.com/docs/vip_loan/market-data/Query-VIP-Loan-Fixed-Rate-Market
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param loanCoin -
+@param duration -  Duration in days, minimum 1
+@param current -  Page number, default 1, minimum 1
+@param size -  Page size, default 10, range [1, 100]
+@param recvWindow -
+@return ApiQueryVIPLoanFixedRateMarketRequest
+*/
+func (a *MarketDataAPIService) QueryVIPLoanFixedRateMarket(ctx context.Context) ApiQueryVIPLoanFixedRateMarketRequest {
+	return ApiQueryVIPLoanFixedRateMarketRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return QueryVIPLoanFixedRateMarketResponse
+func (a *MarketDataAPIService) QueryVIPLoanFixedRateMarketExecute(r ApiQueryVIPLoanFixedRateMarketRequest) (*common.RestApiResponse[models.QueryVIPLoanFixedRateMarketResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/loan/vip/fixed/market"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.loanCoin == nil {
+		return nil, common.ReportError("loanCoin is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "loanCoin", r.loanCoin, "form", "")
+	if r.duration != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "duration", r.duration, "form", "")
+	}
+	if r.current != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
+	}
+	if r.size != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.QueryVIPLoanFixedRateMarketResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

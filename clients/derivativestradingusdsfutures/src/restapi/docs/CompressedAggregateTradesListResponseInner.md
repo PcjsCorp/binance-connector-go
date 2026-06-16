@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **A** | Pointer to **int64** |  | [optional] 
 **P** | Pointer to **string** |  | [optional] 
 **Q** | Pointer to **string** |  | [optional] 
+**Nq** | Pointer to **string** |  | [optional] 
 **F** | Pointer to **int64** |  | [optional] 
 **L** | Pointer to **int64** |  | [optional] 
 **T** | Pointer to **int64** |  | [optional] 
@@ -105,6 +106,31 @@ SetQ sets Q field to given value.
 `func (o *CompressedAggregateTradesListResponseInner) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
+
+### GetNq
+
+`func (o *CompressedAggregateTradesListResponseInner) GetNq() string`
+
+GetNq returns the Nq field if non-nil, zero value otherwise.
+
+### GetNqOk
+
+`func (o *CompressedAggregateTradesListResponseInner) GetNqOk() (*string, bool)`
+
+GetNqOk returns a tuple with the Nq field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNq
+
+`func (o *CompressedAggregateTradesListResponseInner) SetNq(v string)`
+
+SetNq sets Nq field to given value.
+
+### HasNq
+
+`func (o *CompressedAggregateTradesListResponseInner) HasNq() bool`
+
+HasNq returns a boolean if a field has been set.
 
 ### GetF
 

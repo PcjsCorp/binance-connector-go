@@ -1,5 +1,13 @@
 ### Changelog
 
+## 1.6.0 - 2026-06-16
+
+### Changed (1)
+
+- Added parameters `AccountType`, `Agency` and `BankCodeForPix` on `AccountInfo`
+  - affected methods:
+    - `FiatWithdraw()` (`POST /sapi/v2/fiat/withdraw`)
+
 ## 1.5.0 - 2026-03-26
 
 ### Changed (1)
