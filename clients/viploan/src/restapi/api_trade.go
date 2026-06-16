@@ -52,7 +52,7 @@ func (r ApiVipLoanBorrowRequest) CollateralAccountId(collateralAccountId string)
 	return r
 }
 
-// Multiple split by &#x60;,&#x60;
+// Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire spot account balance)
 func (r ApiVipLoanBorrowRequest) CollateralCoin(collateralCoin string) ApiVipLoanBorrowRequest {
 	r.collateralCoin = &collateralCoin
 	return r
@@ -90,7 +90,7 @@ https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow
 @param loanCoin -
 @param loanAmount -
 @param collateralAccountId -  Multiple split by `,`
-@param collateralCoin -  Multiple split by `,`
+@param collateralCoin -  Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire spot account balance)
 @param isFlexibleRate -  Default: TRUE. TRUE : flexible rate; FALSE: fixed rate
 @param loanTerm -  Mandatory for fixed rate. Optional for fixed interest rate. Eg: 30/60 days
 @param recvWindow -
@@ -146,6 +146,144 @@ func (a *TradeAPIService) VipLoanBorrowExecute(r ApiVipLoanBorrowRequest) (*comm
 	}
 
 	resp, err := SendRequest[models.VipLoanBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiVipLoanFixedRateBorrowRequest struct {
+	ctx                 context.Context
+	ApiService          *TradeAPIService
+	supplyRequest       *string
+	borrowCoin          *string
+	loanTerm            *int64
+	borrowUid           *int64
+	collateralCoin      *string
+	collateralAccountId *string
+	autoRepay           *bool
+	recvWindow          *int64
+}
+
+// Supply request string, positional encoding (no key). Multiple entries separated by &#x60;;&#x60;, fields separated by &#x60;:&#x60;, order: &#x60;&lt;requestId&gt;:&lt;interestRate&gt;:&lt;amount&gt;&#x60;. Example: &#x60;1212:0.12:100;3434:0.13:50&#x60;
+func (r ApiVipLoanFixedRateBorrowRequest) SupplyRequest(supplyRequest string) ApiVipLoanFixedRateBorrowRequest {
+	r.supplyRequest = &supplyRequest
+	return r
+}
+
+// Borrow coin
+func (r ApiVipLoanFixedRateBorrowRequest) BorrowCoin(borrowCoin string) ApiVipLoanFixedRateBorrowRequest {
+	r.borrowCoin = &borrowCoin
+	return r
+}
+
+// 30/60 days
+func (r ApiVipLoanFixedRateBorrowRequest) LoanTerm(loanTerm int64) ApiVipLoanFixedRateBorrowRequest {
+	r.loanTerm = &loanTerm
+	return r
+}
+
+// Borrow receiving account UID
+func (r ApiVipLoanFixedRateBorrowRequest) BorrowUid(borrowUid int64) ApiVipLoanFixedRateBorrowRequest {
+	r.borrowUid = &borrowUid
+	return r
+}
+
+// Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire spot account balance)
+func (r ApiVipLoanFixedRateBorrowRequest) CollateralCoin(collateralCoin string) ApiVipLoanFixedRateBorrowRequest {
+	r.collateralCoin = &collateralCoin
+	return r
+}
+
+// Multiple split by &#x60;,&#x60;
+func (r ApiVipLoanFixedRateBorrowRequest) CollateralAccountId(collateralAccountId string) ApiVipLoanFixedRateBorrowRequest {
+	r.collateralAccountId = &collateralAccountId
+	return r
+}
+
+// Default: &#x60;true&#x60;. &#x60;true&#x60;: auto repay at expiration; &#x60;false&#x60;: auto-convert to flexible (floating rate) at expiration
+func (r ApiVipLoanFixedRateBorrowRequest) AutoRepay(autoRepay bool) ApiVipLoanFixedRateBorrowRequest {
+	r.autoRepay = &autoRepay
+	return r
+}
+
+func (r ApiVipLoanFixedRateBorrowRequest) RecvWindow(recvWindow int64) ApiVipLoanFixedRateBorrowRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiVipLoanFixedRateBorrowRequest) Execute() (*common.RestApiResponse[models.VipLoanFixedRateBorrowResponse], error) {
+	return r.ApiService.VipLoanFixedRateBorrowExecute(r)
+}
+
+/*
+VipLoanFixedRateBorrow VIP Loan Fixed Rate Borrow(TRADE)
+Post /sapi/v1/loan/vip/fixed/borrow
+
+https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Fixed-Rate-Borrow
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param supplyRequest -  Supply request string, positional encoding (no key). Multiple entries separated by `;`, fields separated by `:`, order: `<requestId>:<interestRate>:<amount>`. Example: `1212:0.12:100;3434:0.13:50`
+@param borrowCoin -  Borrow coin
+@param loanTerm -  30/60 days
+@param borrowUid -  Borrow receiving account UID
+@param collateralCoin -  Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire spot account balance)
+@param collateralAccountId -  Multiple split by `,`
+@param autoRepay -  Default: `true`. `true`: auto repay at expiration; `false`: auto-convert to flexible (floating rate) at expiration
+@param recvWindow -
+@return ApiVipLoanFixedRateBorrowRequest
+*/
+func (a *TradeAPIService) VipLoanFixedRateBorrow(ctx context.Context) ApiVipLoanFixedRateBorrowRequest {
+	return ApiVipLoanFixedRateBorrowRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return VipLoanFixedRateBorrowResponse
+func (a *TradeAPIService) VipLoanFixedRateBorrowExecute(r ApiVipLoanFixedRateBorrowRequest) (*common.RestApiResponse[models.VipLoanFixedRateBorrowResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/loan/vip/fixed/borrow"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.supplyRequest == nil {
+		return nil, common.ReportError("supplyRequest is required and must be specified")
+	}
+	if r.borrowCoin == nil {
+		return nil, common.ReportError("borrowCoin is required and must be specified")
+	}
+	if r.loanTerm == nil {
+		return nil, common.ReportError("loanTerm is required and must be specified")
+	}
+	if r.borrowUid == nil {
+		return nil, common.ReportError("borrowUid is required and must be specified")
+	}
+	if r.collateralCoin == nil {
+		return nil, common.ReportError("collateralCoin is required and must be specified")
+	}
+	if r.collateralAccountId == nil {
+		return nil, common.ReportError("collateralAccountId is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "supplyRequest", r.supplyRequest, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "borrowCoin", r.borrowCoin, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "loanTerm", r.loanTerm, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "borrowUid", r.borrowUid, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "collateralCoin", r.collateralCoin, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "collateralAccountId", r.collateralAccountId, "form", "")
+	if r.autoRepay != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "autoRepay", r.autoRepay, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.VipLoanFixedRateBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

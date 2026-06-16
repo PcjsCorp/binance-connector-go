@@ -541,22 +541,29 @@ func (a *AssetManagementAPIService) GetSubAccountDepositAddressExecute(r ApiGetS
 }
 
 type ApiGetSubAccountDepositHistoryRequest struct {
-	ctx        context.Context
-	ApiService *AssetManagementAPIService
-	email      *string
-	coin       *string
-	status     *int64
-	startTime  *int64
-	endTime    *int64
-	limit      *int64
-	offset     *int64
-	recvWindow *int64
-	txId       *string
+	ctx           context.Context
+	ApiService    *AssetManagementAPIService
+	email         *string
+	includeSource *bool
+	coin          *string
+	status        *int64
+	startTime     *int64
+	endTime       *int64
+	limit         *int64
+	offset        *int64
+	recvWindow    *int64
+	txId          *string
 }
 
 // [Sub-account email](#email-address)
 func (r ApiGetSubAccountDepositHistoryRequest) Email(email string) ApiGetSubAccountDepositHistoryRequest {
 	r.email = &email
+	return r
+}
+
+// Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60;
+func (r ApiGetSubAccountDepositHistoryRequest) IncludeSource(includeSource bool) ApiGetSubAccountDepositHistoryRequest {
+	r.includeSource = &includeSource
 	return r
 }
 
@@ -615,6 +622,7 @@ https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -  [Sub-account email](#email-address)
+@param includeSource -  Default: `false`, return `sourceAddress`field when set to `true`
 @param coin -
 @param status -  0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success)
 @param startTime -
@@ -647,6 +655,9 @@ func (a *AssetManagementAPIService) GetSubAccountDepositHistoryExecute(r ApiGetS
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
+	if r.includeSource != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "includeSource", r.includeSource, "form", "")
+	}
 	if r.coin != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "coin", r.coin, "form", "")
 	}

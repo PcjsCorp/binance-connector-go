@@ -14,6 +14,7 @@ Name         | Type          | Description.  | Notes
 **Pu** | Pointer to **int64** |  | [optional] 
 **B** | Pointer to [**[]PartialBookDepthStreamsResponseBItem**](PartialBookDepthStreamsResponseBItem.md) |  | [optional] 
 **A** | Pointer to [**[]PartialBookDepthStreamsResponseAItem**](PartialBookDepthStreamsResponseAItem.md) |  | [optional] 
+**St** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetA sets A field to given value.
 `func (o *PartialBookDepthStreamsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
+
+### GetSt
+
+`func (o *PartialBookDepthStreamsResponse) GetSt() int64`
+
+GetSt returns the St field if non-nil, zero value otherwise.
+
+### GetStOk
+
+`func (o *PartialBookDepthStreamsResponse) GetStOk() (*int64, bool)`
+
+GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSt
+
+`func (o *PartialBookDepthStreamsResponse) SetSt(v int64)`
+
+SetSt sets St field to given value.
+
+### HasSt
+
+`func (o *PartialBookDepthStreamsResponse) HasSt() bool`
+
+HasSt returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

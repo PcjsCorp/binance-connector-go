@@ -20,7 +20,6 @@ type IndividualSymbolTickerStreamsResponse struct {
 	Smalle               *string `json:"e,omitempty"`
 	E                    *int64  `json:"E,omitempty"`
 	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
 	Smallp               *string `json:"p,omitempty"`
 	P                    *string `json:"P,omitempty"`
 	Smallw               *string `json:"w,omitempty"`
@@ -36,6 +35,8 @@ type IndividualSymbolTickerStreamsResponse struct {
 	F                    *int64  `json:"F,omitempty"`
 	L                    *int64  `json:"L,omitempty"`
 	Smalln               *int64  `json:"n,omitempty"`
+	Smallps              *string `json:"ps,omitempty"`
+	Smallst              *int64  `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -152,38 +153,6 @@ func (o *IndividualSymbolTickerStreamsResponse) HasSmalls() bool {
 // SetS gets a reference to the given string and assigns it to the S field.
 func (o *IndividualSymbolTickerStreamsResponse) SetSmalls(v string) {
 	o.Smalls = &v
-}
-
-// GetPs returns the Ps field value if set, zero value otherwise.
-func (o *IndividualSymbolTickerStreamsResponse) GetSmallps() string {
-	if o == nil || common.IsNil(o.Smallps) {
-		var ret string
-		return ret
-	}
-	return *o.Smallps
-}
-
-// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IndividualSymbolTickerStreamsResponse) GetSmallpsOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smallps) {
-		return nil, false
-	}
-	return o.Smallps, true
-}
-
-// HasPs returns a boolean if a field has been set.
-func (o *IndividualSymbolTickerStreamsResponse) HasSmallps() bool {
-	if o != nil && !common.IsNil(o.Smallps) {
-		return true
-	}
-
-	return false
-}
-
-// SetPs gets a reference to the given string and assigns it to the Ps field.
-func (o *IndividualSymbolTickerStreamsResponse) SetSmallps(v string) {
-	o.Smallps = &v
 }
 
 // GetP returns the P field value if set, zero value otherwise.
@@ -666,6 +635,70 @@ func (o *IndividualSymbolTickerStreamsResponse) SetSmalln(v int64) {
 	o.Smalln = &v
 }
 
+// GetPs returns the Ps field value if set, zero value otherwise.
+func (o *IndividualSymbolTickerStreamsResponse) GetSmallps() string {
+	if o == nil || common.IsNil(o.Smallps) {
+		var ret string
+		return ret
+	}
+	return *o.Smallps
+}
+
+// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndividualSymbolTickerStreamsResponse) GetSmallpsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallps) {
+		return nil, false
+	}
+	return o.Smallps, true
+}
+
+// HasPs returns a boolean if a field has been set.
+func (o *IndividualSymbolTickerStreamsResponse) HasSmallps() bool {
+	if o != nil && !common.IsNil(o.Smallps) {
+		return true
+	}
+
+	return false
+}
+
+// SetPs gets a reference to the given string and assigns it to the Ps field.
+func (o *IndividualSymbolTickerStreamsResponse) SetSmallps(v string) {
+	o.Smallps = &v
+}
+
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *IndividualSymbolTickerStreamsResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndividualSymbolTickerStreamsResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *IndividualSymbolTickerStreamsResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *IndividualSymbolTickerStreamsResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o IndividualSymbolTickerStreamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -684,9 +717,6 @@ func (o IndividualSymbolTickerStreamsResponse) ToMap() (map[string]interface{}, 
 	}
 	if !common.IsNil(o.Smalls) {
 		toSerialize["s"] = o.Smalls
-	}
-	if !common.IsNil(o.Smallps) {
-		toSerialize["ps"] = o.Smallps
 	}
 	if !common.IsNil(o.Smallp) {
 		toSerialize["p"] = o.Smallp
@@ -733,6 +763,12 @@ func (o IndividualSymbolTickerStreamsResponse) ToMap() (map[string]interface{}, 
 	if !common.IsNil(o.Smalln) {
 		toSerialize["n"] = o.Smalln
 	}
+	if !common.IsNil(o.Smallps) {
+		toSerialize["ps"] = o.Smallps
+	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -758,7 +794,6 @@ func (o *IndividualSymbolTickerStreamsResponse) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "e")
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "s")
-		delete(additionalProperties, "ps")
 		delete(additionalProperties, "p")
 		delete(additionalProperties, "P")
 		delete(additionalProperties, "w")
@@ -774,6 +809,8 @@ func (o *IndividualSymbolTickerStreamsResponse) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "F")
 		delete(additionalProperties, "L")
 		delete(additionalProperties, "n")
+		delete(additionalProperties, "ps")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

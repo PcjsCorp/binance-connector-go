@@ -13,6 +13,7 @@ Name         | Type          | Description.  | Notes
 **B** | Pointer to **string** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
+**St** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -257,6 +258,31 @@ SetA sets A field to given value.
 `func (o *IndividualSymbolBookTickerStreamsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
+
+### GetSt
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetSt() int64`
+
+GetSt returns the St field if non-nil, zero value otherwise.
+
+### GetStOk
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetStOk() (*int64, bool)`
+
+GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSt
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) SetSt(v int64)`
+
+SetSt sets St field to given value.
+
+### HasSt
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) HasSt() bool`
+
+HasSt returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

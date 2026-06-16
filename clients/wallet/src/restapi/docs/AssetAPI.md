@@ -171,7 +171,7 @@ No authorization required
 
 ## DustConvert
 
-> DustConvertResponse DustConvert(ctx).Asset(asset).ClientId(clientId).TargetAsset(targetAsset).ThirdPartyClientId(thirdPartyClientId).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+> DustConvertResponse DustConvert(ctx).Asset(asset).AccountType(accountType).ClientId(clientId).TargetAsset(targetAsset).ThirdPartyClientId(thirdPartyClientId).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
 
 Dust Convert (USER_DATA)
 
@@ -193,6 +193,7 @@ import (
 
 func main() {
 	asset := "asset_example" // string | 
+	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
 	clientId := "1" // string | A unique id for the request (optional)
 	targetAsset := "targetAsset_example" // string |  (optional)
 	thirdPartyClientId := "1" // string |  (optional)
@@ -205,7 +206,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset(asset).ClientId(clientId).TargetAsset(targetAsset).ThirdPartyClientId(thirdPartyClientId).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset(asset).AccountType(accountType).ClientId(clientId).TargetAsset(targetAsset).ThirdPartyClientId(thirdPartyClientId).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetAPI.DustConvert``: %v\n", err)
 		return
@@ -225,6 +226,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
+ **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
  **clientId** | **string** | A unique id for the request | 
  **targetAsset** | **string** |  | 
  **thirdPartyClientId** | **string** |  | 
@@ -247,7 +249,7 @@ No authorization required
 
 ## DustConvertibleAssets
 
-> DustConvertibleAssetsResponse DustConvertibleAssets(ctx).TargetAsset(targetAsset).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+> DustConvertibleAssetsResponse DustConvertibleAssets(ctx).TargetAsset(targetAsset).AccountType(accountType).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
 
 Dust Convertible Assets (USER_DATA)
 
@@ -269,6 +271,7 @@ import (
 
 func main() {
 	targetAsset := "targetAsset_example" // string | 
+	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
 	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -278,7 +281,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).TargetAsset(targetAsset).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).TargetAsset(targetAsset).AccountType(accountType).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetAPI.DustConvertibleAssets``: %v\n", err)
 		return
@@ -298,6 +301,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **targetAsset** | **string** |  | 
+ **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
  **dustQuotaAssetToTargetAssetPrice** | **float32** |  | 
 
 ### Return type

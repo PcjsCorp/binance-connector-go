@@ -8,6 +8,7 @@ Method        | HTTP request  | Description
 [**AllMarketLiquidationOrderStreams**](MarketAPI.md#AllMarketLiquidationOrderStreams) | /!forceOrder@arr | All Market Liquidation Order Streams
 [**AllMarketMiniTickersStream**](MarketAPI.md#AllMarketMiniTickersStream) | /!miniTicker@arr | All Market Mini Tickers Stream
 [**AllMarketTickersStreams**](MarketAPI.md#AllMarketTickersStreams) | /!ticker@arr | All Market Tickers Streams
+[**AssetIndex**](MarketAPI.md#AssetIndex) | /!assetIndex@arr | Asset Index
 [**CompositeIndexSymbolInformationStreams**](MarketAPI.md#CompositeIndexSymbolInformationStreams) | /&lt;symbol&gt;@compositeIndex | Composite Index Symbol Information Streams
 [**ContinuousContractKlineCandlestickStreams**](MarketAPI.md#ContinuousContractKlineCandlestickStreams) | /&lt;pair&gt;_&lt;contractType&gt;@continuousKline_&lt;interval&gt; | Continuous Contract Kline/Candlestick Streams
 [**ContractInfoStream**](MarketAPI.md#ContractInfoStream) | /!contractInfo | Contract Info Stream
@@ -17,7 +18,6 @@ Method        | HTTP request  | Description
 [**LiquidationOrderStreams**](MarketAPI.md#LiquidationOrderStreams) | /&lt;symbol&gt;@forceOrder | Liquidation Order Streams
 [**MarkPriceStream**](MarketAPI.md#MarkPriceStream) | /&lt;symbol&gt;@markPrice@&lt;updateSpeed&gt; | Mark Price Stream
 [**MarkPriceStreamForAllMarket**](MarketAPI.md#MarkPriceStreamForAllMarket) | /!markPrice@arr@&lt;updateSpeed&gt; | Mark Price Stream for All market
-[**MultiAssetsModeAssetIndex**](MarketAPI.md#MultiAssetsModeAssetIndex) | /!assetIndex@arr | Multi-Assets Mode Asset Index
 [**TradingSessionStream**](MarketAPI.md#TradingSessionStream) | /tradingSession | Trading Session Stream
 
 
@@ -288,6 +288,80 @@ func main() {
 	}
 
 	handler.On("message", func(message responseModels.AllMarketTickersStreamsResponse) {
+		b, _ := json.MarshalIndent(message, "", "  ")
+		log.Printf("Received message: %s\n", string(b))
+	})
+
+	log.Println("Subscribed. Waiting 10 seconds...")
+	time.Sleep(10 * time.Second)
+
+	log.Println("Unsubscribing from stream...")
+	handler.Unsubscribe()
+
+	log.Println("Closing WebSocket connection...")
+	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
+	if err != nil {
+		log.Fatalf("Error closing WebSocket connection: %v", err)
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | Unique WebSocket request ID. | 
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## AssetIndex
+
+Asset Index
+
+
+### Example
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"os"
+	"time"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
+	responseModels "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/websocketstreams/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+
+	configuration := common.NewConfigurationWebsocketStreams(
+		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
+	)
+	wsClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithWebsocketStreams(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketStreams.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+	handler, err := wsClient.WebsocketStreams.MarketAPI.AssetIndex().Id(id).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.AssetIndex``: %v\n", err)
+		return
+	}
+
+	handler.On("message", func(message responseModels.AssetIndexResponse) {
 		b, _ := json.MarshalIndent(message, "", "  ")
 		log.Printf("Received message: %s\n", string(b))
 	})
@@ -1001,80 +1075,6 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Unique WebSocket request ID. | 
  **updateSpeed** | **string** | WebSocket stream update speed | 
-
-### Authorization
-
-No authorization required
-
-[[Back to README]](../../../README.md)
-
-
-## MultiAssetsModeAssetIndex
-
-Multi-Assets Mode Asset Index
-
-
-### Example
-
-```go
-package main
-
-import (
-	"encoding/json"
-	"log"
-	"os"
-	"time"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
-	responseModels "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-
-	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
-	)
-	wsClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithWebsocketStreams(configuration))
-
-	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
-	if err != nil {
-		log.Printf("Error connecting to WebSocket: %v\n", err)
-		return
-	}
-
-	handler, err := wsClient.WebsocketStreams.MarketAPI.MultiAssetsModeAssetIndex().Id(id).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `MarketAPI.MultiAssetsModeAssetIndex``: %v\n", err)
-		return
-	}
-
-	handler.On("message", func(message responseModels.MultiAssetsModeAssetIndexResponse) {
-		b, _ := json.MarshalIndent(message, "", "  ")
-		log.Printf("Received message: %s\n", string(b))
-	})
-
-	log.Println("Subscribed. Waiting 10 seconds...")
-	time.Sleep(10 * time.Second)
-
-	log.Println("Unsubscribing from stream...")
-	handler.Unsubscribe()
-
-	log.Println("Closing WebSocket connection...")
-	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
-	if err != nil {
-		log.Fatalf("Error closing WebSocket connection: %v", err)
-	}
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 

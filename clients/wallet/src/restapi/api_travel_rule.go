@@ -604,6 +604,106 @@ func (a *TravelRuleAPIService) FetchAddressVerificationListExecute(r ApiFetchAdd
 	return resp, nil
 }
 
+type ApiGetCountryListRequest struct {
+	ctx        context.Context
+	ApiService *TravelRuleAPIService
+}
+
+func (r ApiGetCountryListRequest) Execute() (*common.RestApiResponse[models.GetCountryListResponse], error) {
+	return r.ApiService.GetCountryListExecute(r)
+}
+
+/*
+GetCountryList Get Country List (USER_DATA)
+Get /sapi/v1/localentity/country/list
+
+https://developers.binance.com/docs/wallet/travel-rule/country-list
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return ApiGetCountryListRequest
+*/
+func (a *TravelRuleAPIService) GetCountryList(ctx context.Context) ApiGetCountryListRequest {
+	return ApiGetCountryListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCountryListResponse
+func (a *TravelRuleAPIService) GetCountryListExecute(r ApiGetCountryListRequest) (*common.RestApiResponse[models.GetCountryListResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/localentity/country/list"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	resp, err := SendRequest[models.GetCountryListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetRegionListRequest struct {
+	ctx         context.Context
+	ApiService  *TravelRuleAPIService
+	countryCode *string
+}
+
+// ISO 2-digit country code (from &#x60;Country List&#x60; API).
+func (r ApiGetRegionListRequest) CountryCode(countryCode string) ApiGetRegionListRequest {
+	r.countryCode = &countryCode
+	return r
+}
+
+func (r ApiGetRegionListRequest) Execute() (*common.RestApiResponse[models.GetRegionListResponse], error) {
+	return r.ApiService.GetRegionListExecute(r)
+}
+
+/*
+GetRegionList Get Region List (USER_DATA)
+Get /sapi/v1/localentity/region/list
+
+https://developers.binance.com/docs/wallet/travel-rule/region-list
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param countryCode -  ISO 2-digit country code (from `Country List` API).
+@return ApiGetRegionListRequest
+*/
+func (a *TravelRuleAPIService) GetRegionList(ctx context.Context) ApiGetRegionListRequest {
+	return ApiGetRegionListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetRegionListResponse
+func (a *TravelRuleAPIService) GetRegionListExecute(r ApiGetRegionListRequest) (*common.RestApiResponse[models.GetRegionListResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/localentity/region/list"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.countryCode == nil {
+		return nil, common.ReportError("countryCode is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "countryCode", r.countryCode, "form", "")
+
+	resp, err := SendRequest[models.GetRegionListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiSubmitDepositQuestionnaireRequest struct {
 	ctx            context.Context
 	ApiService     *TravelRuleAPIService

@@ -27,6 +27,7 @@ type DiffBookDepthStreamsResponse struct {
 	Smallpu              *int64                              `json:"pu,omitempty"`
 	Smallb               []DiffBookDepthStreamsResponseBItem `json:"b,omitempty"`
 	Smalla               []DiffBookDepthStreamsResponseAItem `json:"a,omitempty"`
+	Smallst              *int64                              `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -369,6 +370,38 @@ func (o *DiffBookDepthStreamsResponse) SetSmalla(v []DiffBookDepthStreamsRespons
 	o.Smalla = v
 }
 
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *DiffBookDepthStreamsResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DiffBookDepthStreamsResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *DiffBookDepthStreamsResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *DiffBookDepthStreamsResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o DiffBookDepthStreamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -409,6 +442,9 @@ func (o DiffBookDepthStreamsResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smalla) {
 		toSerialize["a"] = o.Smalla
 	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -441,6 +477,7 @@ func (o *DiffBookDepthStreamsResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pu")
 		delete(additionalProperties, "b")
 		delete(additionalProperties, "a")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

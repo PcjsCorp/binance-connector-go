@@ -11,10 +11,10 @@ import (
 )
 
 func main() {
-	MultiAssetsModeAssetIndex()
+	AssetIndex()
 }
 
-func MultiAssetsModeAssetIndex() {
+func AssetIndex() {
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsStreamsBasePath("wss://fstream.binance.com"),
 	)
@@ -28,12 +28,12 @@ func MultiAssetsModeAssetIndex() {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketAPI.MultiAssetsModeAssetIndex().Execute()
+	handler, err := wsClient.WebsocketStreams.MarketAPI.AssetIndex().Execute()
 	if err != nil {
 		log.Fatalf("Error subscribing to stream: %v", err)
 	}
 
-	handler.On("message", func(message models.MultiAssetsModeAssetIndexResponse) {
+	handler.On("message", func(message models.AssetIndexResponse) {
 		b, _ := json.MarshalIndent(message, "", "  ")
 		log.Printf("Received message: %s\n", string(b))
 	})

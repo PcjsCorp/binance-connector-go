@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.8.0 - 2026-06-16
+
+### Added (2)
+
+- `getCountryList()` (`GET /sapi/v1/localentity/country/list`)
+- `getRegionList()` (`GET /sapi/v1/localentity/region/list`)
+
+### Changed (1)
+
+- Added parameter `accountType`
+  - affected methods:
+    - `dustConvert()` (`POST /sapi/v1/asset/dust-convert/convert`)
+    - `dustConvertibleAssets()` (`POST /sapi/v1/asset/dust-convert/query-convertible-assets`)
+
+
 ## 1.7.0 - 2026-03-26
 
 ### Changed (1)

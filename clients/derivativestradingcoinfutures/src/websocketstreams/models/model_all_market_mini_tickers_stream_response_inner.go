@@ -27,6 +27,7 @@ type AllMarketMiniTickersStreamResponseInner struct {
 	Smalll               *string `json:"l,omitempty"`
 	Smallv               *string `json:"v,omitempty"`
 	Smallq               *string `json:"q,omitempty"`
+	Smallst              *int64  `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -369,6 +370,38 @@ func (o *AllMarketMiniTickersStreamResponseInner) SetSmallq(v string) {
 	o.Smallq = &v
 }
 
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *AllMarketMiniTickersStreamResponseInner) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllMarketMiniTickersStreamResponseInner) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *AllMarketMiniTickersStreamResponseInner) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *AllMarketMiniTickersStreamResponseInner) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o AllMarketMiniTickersStreamResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -409,6 +442,9 @@ func (o AllMarketMiniTickersStreamResponseInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.Smallq) {
 		toSerialize["q"] = o.Smallq
 	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -441,6 +477,7 @@ func (o *AllMarketMiniTickersStreamResponseInner) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "l")
 		delete(additionalProperties, "v")
 		delete(additionalProperties, "q")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

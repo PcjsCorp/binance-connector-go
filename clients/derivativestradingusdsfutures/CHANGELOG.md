@@ -1,5 +1,110 @@
 ### Changelog
 
+## 1.10.0 - 2026-06-16
+
+### Changed (24)
+
+#### REST API
+
+- Modified response for `assetIndex()` (`GET /fapi/v1/assetIndex`):
+  - oneOf added 2 schema(s)
+  - oneOf removed 2 schema(s)
+
+- Modified response for `compressedAggregateTradesList()` (`GET /fapi/v1/aggTrades`):
+  - items: property `nq` added
+  - items: item property `nq` added
+
+- Modified response for `queryAlgoOrder()` (`GET /fapi/v1/algoOrder`):
+  - property `actualQty` added
+  - property `actualType` added
+  - property `slPrice` deleted
+  - property `slTriggerPrice` deleted
+  - property `tpPrice` deleted
+  - property `tpTriggerPrice` deleted
+
+- Modified response for `tradingSchedule()` (`GET /fapi/v1/tradingSchedule`):
+  - `marketSchedules`: property `KR_EQUITY` added
+
+#### WebSocket API
+
+- Deleted parameter `activationPrice`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Deleted parameter `callbackRate`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Deleted parameter `closePosition`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Deleted parameter `priceProtect`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Deleted parameter `stopPrice`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Deleted parameter `workingType`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+
+#### WebSocket Streams
+
+- Modified response for `allBookTickersStream()` (`!bookTicker` stream):
+  - property `st` added
+  - property `ps` added
+
+- Modified response for `contractInfoStream()` (`!contractInfo` stream):
+  - property `st` added
+  - property `ps` deleted
+
+- Modified response for `allMarketLiquidationOrderStreams()` (`!forceOrder@arr` stream):
+  - property `ps` added
+  - property `st` added
+
+- Modified response for `markPriceStreamForAllMarket()` (`!markPrice@arr@<updateSpeed>` stream):
+  - items: property `st` added
+  - items: item property `st` added
+
+- Modified response for `allMarketMiniTickersStream()` (`!miniTicker@arr` stream):
+  - items: property `ps` added
+  - items: property `st` added
+  - items: item property `ps` added
+  - items: item property `st` added
+
+- Modified response for `allMarketTickersStreams()` (`!ticker@arr` stream):
+  - items: property `ps` added
+  - items: property `st` added
+  - items: item property `ps` added
+  - items: item property `st` added
+
+- Modified response for `aggregateTradeStreams()` (`<symbol>@aggTrade` stream):
+  - property `st` added
+
+- Modified response for `individualSymbolBookTickerStreams()` (`<symbol>@bookTicker` stream):
+  - property `st` added
+
+- Modified response for `partialBookDepthStreams()` (`<symbol>@depth<levels>@<updateSpeed>` stream):
+  - property `ps` added
+  - property `st` added
+
+- Modified response for `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream):
+  - property `ps` added
+  - property `st` added
+
+- Modified response for `markPriceStream()` (`<symbol>@markPrice@<updateSpeed>` stream):
+  - property `st` added
+
+- Modified response for `individualSymbolMiniTickerStream()` (`<symbol>@miniTicker` stream):
+  - property `st` added
+  - property `ps` added
+
+- Modified response for `rpiDiffBookDepthStreams()` (`<symbol>@rpiDepth@500ms` stream):
+  - property `ps` added
+  - property `st` added
+
+- Modified response for `individualSymbolTickerStreams()` (`<symbol>@ticker` stream):
+  - property `st` added
+  - property `ps` added
+
 ## 1.9.0 - 2026-05-20
 
 ### Changed (1)

@@ -22,6 +22,8 @@ Name         | Type          | Description.  | Notes
 **F** | Pointer to **int64** |  | [optional] 
 **L** | Pointer to **int64** |  | [optional] 
 **N** | Pointer to **int64** |  | [optional] 
+**Ps** | Pointer to **string** |  | [optional] 
+**St** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -491,6 +493,56 @@ SetN sets N field to given value.
 `func (o *AllMarketTickersStreamsResponseInner) HasN() bool`
 
 HasN returns a boolean if a field has been set.
+
+### GetPs
+
+`func (o *AllMarketTickersStreamsResponseInner) GetPs() string`
+
+GetPs returns the Ps field if non-nil, zero value otherwise.
+
+### GetPsOk
+
+`func (o *AllMarketTickersStreamsResponseInner) GetPsOk() (*string, bool)`
+
+GetPsOk returns a tuple with the Ps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPs
+
+`func (o *AllMarketTickersStreamsResponseInner) SetPs(v string)`
+
+SetPs sets Ps field to given value.
+
+### HasPs
+
+`func (o *AllMarketTickersStreamsResponseInner) HasPs() bool`
+
+HasPs returns a boolean if a field has been set.
+
+### GetSt
+
+`func (o *AllMarketTickersStreamsResponseInner) GetSt() int64`
+
+GetSt returns the St field if non-nil, zero value otherwise.
+
+### GetStOk
+
+`func (o *AllMarketTickersStreamsResponseInner) GetStOk() (*int64, bool)`
+
+GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSt
+
+`func (o *AllMarketTickersStreamsResponseInner) SetSt(v int64)`
+
+SetSt sets St field to given value.
+
+### HasSt
+
+`func (o *AllMarketTickersStreamsResponseInner) HasSt() bool`
+
+HasSt returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

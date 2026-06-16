@@ -557,7 +557,7 @@ func main() {
 	endTime := int64(1641782889000) // int64 | End Time (The start time and end time interval cannot exceed half a year)
 	page := int64(789) // int64 | Page
 	limit := int64(789) // int64 | Limit (Max: 500)
-	transfers := "transfers_example" // string | Transfer Direction (FROM/TO) (optional)
+	transfers := "transfers_example" // string | Transfer Direction (from/to) (optional)
 	transferFunctionAccountType := "transferFunctionAccountType_example" // string | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -591,7 +591,7 @@ Name          | Type          | Description   | Notes
  **endTime** | **int64** | End Time (The start time and end time interval cannot exceed half a year) | 
  **page** | **int64** | Page | 
  **limit** | **int64** | Limit (Max: 500) | 
- **transfers** | **string** | Transfer Direction (FROM/TO) | 
+ **transfers** | **string** | Transfer Direction (from/to) | 
  **transferFunctionAccountType** | **string** | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | 
 
 ### Return type
@@ -637,7 +637,7 @@ func main() {
 	endTime := int64(1641782889000) // int64 | End Time (The start time and end time interval cannot exceed half a year)
 	page := int64(789) // int64 | Page
 	limit := int64(789) // int64 | Limit (Max: 500)
-	transfers := "transfers_example" // string | Transfer Direction (FROM/TO) (optional)
+	transfers := "transfers_example" // string | Transfer Direction (from/to) (optional)
 	transferFunctionAccountType := "transferFunctionAccountType_example" // string | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -671,7 +671,7 @@ Name          | Type          | Description   | Notes
  **endTime** | **int64** | End Time (The start time and end time interval cannot exceed half a year) | 
  **page** | **int64** | Page | 
  **limit** | **int64** | Limit (Max: 500) | 
- **transfers** | **string** | Transfer Direction (FROM/TO) | 
+ **transfers** | **string** | Transfer Direction (from/to) | 
  **transferFunctionAccountType** | **string** | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | 
 
 ### Return type
@@ -716,7 +716,7 @@ func main() {
 	endTime := int64(1641782889000) // int64 | End Time (The start time and end time interval cannot exceed half a year)
 	page := int64(789) // int64 | Page
 	limit := int64(789) // int64 | Limit (Max: 500)
-	transfers := "transfers_example" // string | Transfer Direction (FROM/TO) (optional)
+	transfers := "transfers_example" // string | Transfer Direction (from/to) (optional)
 	transferFunctionAccountType := "transferFunctionAccountType_example" // string | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -750,7 +750,7 @@ Name          | Type          | Description   | Notes
  **endTime** | **int64** | End Time (The start time and end time interval cannot exceed half a year) | 
  **page** | **int64** | Page | 
  **limit** | **int64** | Limit (Max: 500) | 
- **transfers** | **string** | Transfer Direction (FROM/TO) | 
+ **transfers** | **string** | Transfer Direction (from/to) | 
  **transferFunctionAccountType** | **string** | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | 
  **recvWindow** | **int64** |  | 
 

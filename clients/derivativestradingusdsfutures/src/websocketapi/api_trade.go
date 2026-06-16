@@ -268,7 +268,7 @@ func (r ApiModifyOrderRequest) OrigClientOrderId(origClientOrderId string) ApiMo
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only available for &#x60;LIMIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;/ &#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiModifyOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
@@ -303,7 +303,7 @@ ModifyOrder Modify Order (TRADE)
 
 https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Modify-Order
 
-@param symbol	@param side `SELL`, `BUY`	@param quantity Order quantity, cannot be sent with `closePosition=true`	@param price	@param id Unique WebSocket request ID.	@param orderId	@param origClientOrderId	@param priceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param recvWindow
+@param symbol	@param side `SELL`, `BUY`	@param quantity Order quantity, cannot be sent with `closePosition=true`	@param price	@param id Unique WebSocket request ID.	@param orderId	@param origClientOrderId	@param priceMatch only available for `LIMIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`/ `QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param recvWindow
 @return ApiModifyOrderRequest
 */
 func (a *TradeAPIService) ModifyOrder() ApiModifyOrderRequest {
@@ -433,7 +433,6 @@ func (r ApiNewAlgoOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeI
 	return r
 }
 
-// Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
 func (r ApiNewAlgoOrderRequest) Quantity(quantity float32) ApiNewAlgoOrderRequest {
 	r.quantity = &quantity
 	return r
@@ -449,31 +448,31 @@ func (r ApiNewAlgoOrderRequest) TriggerPrice(triggerPrice float32) ApiNewAlgoOrd
 	return r
 }
 
-// stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot;
+// triggerPrice triggered by: &#x60;MARK_PRICE&#x60;, &#x60;CONTRACT_PRICE&#x60;. Default &#x60;CONTRACT_PRICE&#x60;
 func (r ApiNewAlgoOrderRequest) WorkingType(workingType models.NewAlgoOrderWorkingTypeParameter) ApiNewAlgoOrderRequest {
 	r.workingType = &workingType
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only available for &#x60;LIMIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;/ &#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiNewAlgoOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiNewAlgoOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
-// &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
+// true, false；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
 func (r ApiNewAlgoOrderRequest) ClosePosition(closePosition string) ApiNewAlgoOrderRequest {
 	r.closePosition = &closePosition
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60; order. when price reaches the triggerPrice ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the Price Protection Threshold of the symbol.
 func (r ApiNewAlgoOrderRequest) PriceProtect(priceProtect string) ApiNewAlgoOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
+// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode
 func (r ApiNewAlgoOrderRequest) ReduceOnly(reduceOnly string) ApiNewAlgoOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
@@ -543,7 +542,7 @@ NewAlgoOrder New Algo Order(TRADE)
 
 https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/New-Algo-Order
 
-@param algoType Only support `CONDITIONAL`	@param symbol	@param side `SELL`, `BUY`	@param type_	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.	@param timeInForce	@param quantity Cannot be sent with `closePosition`=`true`(Close-All)	@param price	@param triggerPrice	@param workingType stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"	@param priceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param closePosition `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param priceProtect \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param reduceOnly \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`	@param activatePrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param clientAlgoId	@param newOrderRespType \"ACK\", \"RESULT\", default \"ACK\"	@param selfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param goodTillDate order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000	@param recvWindow
+@param algoType Only support `CONDITIONAL`	@param symbol	@param side `SELL`, `BUY`	@param type_	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.	@param timeInForce	@param quantity	@param price	@param triggerPrice	@param workingType triggerPrice triggered by: `MARK_PRICE`, `CONTRACT_PRICE`. Default `CONTRACT_PRICE`	@param priceMatch only available for `LIMIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`/ `QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param closePosition true, false；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param priceProtect \"true\" or \"false\", default \"false\". Used with `STOP_MARKET` or `TAKE_PROFIT_MARKET` order. when price reaches the triggerPrice ，the difference rate between \"MARK_PRICE\" and \"CONTRACT_PRICE\" cannot be larger than the Price Protection Threshold of the symbol.	@param reduceOnly \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode	@param activatePrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param clientAlgoId	@param newOrderRespType \"ACK\", \"RESULT\", default \"ACK\"	@param selfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param goodTillDate order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000	@param recvWindow
 @return ApiNewAlgoOrderRequest
 */
 func (a *TradeAPIService) NewAlgoOrder() ApiNewAlgoOrderRequest {
@@ -659,12 +658,6 @@ type ApiNewOrderRequest struct {
 	reduceOnly              *string
 	price                   *float32
 	newClientOrderId        *string
-	stopPrice               *float32
-	closePosition           *string
-	activationPrice         *float32
-	callbackRate            *float32
-	workingType             *models.NewAlgoOrderWorkingTypeParameter
-	priceProtect            *string
 	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.ModifyOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
@@ -705,13 +698,12 @@ func (r ApiNewOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeInFor
 	return r
 }
 
-// Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
 func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
+// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode
 func (r ApiNewOrderRequest) ReduceOnly(reduceOnly string) ApiNewOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
@@ -728,49 +720,13 @@ func (r ApiNewOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewOrde
 	return r
 }
 
-// Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewOrderRequest) StopPrice(stopPrice float32) ApiNewOrderRequest {
-	r.stopPrice = &stopPrice
-	return r
-}
-
-// &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
-func (r ApiNewOrderRequest) ClosePosition(closePosition string) ApiNewOrderRequest {
-	r.closePosition = &closePosition
-	return r
-}
-
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;)
-func (r ApiNewOrderRequest) ActivationPrice(activationPrice float32) ApiNewOrderRequest {
-	r.activationPrice = &activationPrice
-	return r
-}
-
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1%
-func (r ApiNewOrderRequest) CallbackRate(callbackRate float32) ApiNewOrderRequest {
-	r.callbackRate = &callbackRate
-	return r
-}
-
-// stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot;
-func (r ApiNewOrderRequest) WorkingType(workingType models.NewAlgoOrderWorkingTypeParameter) ApiNewOrderRequest {
-	r.workingType = &workingType
-	return r
-}
-
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewOrderRequest) PriceProtect(priceProtect string) ApiNewOrderRequest {
-	r.priceProtect = &priceProtect
-	return r
-}
-
 // \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
 func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only available for &#x60;LIMIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;/ &#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiNewOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiNewOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
@@ -817,7 +773,7 @@ NewOrder New Order(TRADE)
 
 https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/New-Order
 
-@param symbol	@param side `SELL`, `BUY`	@param type_	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.	@param timeInForce	@param quantity Cannot be sent with `closePosition`=`true`(Close-All)	@param reduceOnly \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`	@param price	@param newClientOrderId A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`	@param stopPrice Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param closePosition `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param activationPrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param workingType stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"	@param priceProtect \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param newOrderRespType \"ACK\", \"RESULT\", default \"ACK\"	@param priceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param selfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param goodTillDate order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000	@param recvWindow
+@param symbol	@param side `SELL`, `BUY`	@param type_	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.	@param timeInForce	@param quantity	@param reduceOnly \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode	@param price	@param newClientOrderId A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`	@param newOrderRespType \"ACK\", \"RESULT\", default \"ACK\"	@param priceMatch only available for `LIMIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`/ `QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param selfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param goodTillDate order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000	@param recvWindow
 @return ApiNewOrderRequest
 */
 func (a *TradeAPIService) NewOrder() ApiNewOrderRequest {
@@ -867,24 +823,6 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (chan *common.Re
 	}
 	if r.newClientOrderId != nil {
 		localVarQueryParams["newClientOrderId"] = *r.newClientOrderId
-	}
-	if r.stopPrice != nil {
-		localVarQueryParams["stopPrice"] = *r.stopPrice
-	}
-	if r.closePosition != nil {
-		localVarQueryParams["closePosition"] = *r.closePosition
-	}
-	if r.activationPrice != nil {
-		localVarQueryParams["activationPrice"] = *r.activationPrice
-	}
-	if r.callbackRate != nil {
-		localVarQueryParams["callbackRate"] = *r.callbackRate
-	}
-	if r.workingType != nil {
-		localVarQueryParams["workingType"] = *r.workingType
-	}
-	if r.priceProtect != nil {
-		localVarQueryParams["priceProtect"] = *r.priceProtect
 	}
 	if r.newOrderRespType != nil {
 		localVarQueryParams["newOrderRespType"] = *r.newOrderRespType

@@ -16,13 +16,11 @@ Name         | Type          | Description.  | Notes
 **AlgoStatus** | Pointer to **string** |  | [optional] 
 **ActualOrderId** | Pointer to **string** |  | [optional] 
 **ActualPrice** | Pointer to **string** |  | [optional] 
+**ActualType** | Pointer to **string** |  | [optional] 
+**ActualQty** | Pointer to **string** |  | [optional] 
 **TriggerPrice** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **IcebergQuantity** | Pointer to **string** |  | [optional] 
-**TpTriggerPrice** | Pointer to **string** |  | [optional] 
-**TpPrice** | Pointer to **string** |  | [optional] 
-**SlTriggerPrice** | Pointer to **string** |  | [optional] 
-**SlPrice** | Pointer to **string** |  | [optional] 
 **TpOrderType** | Pointer to **string** |  | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 **WorkingType** | Pointer to **string** |  | [optional] 
@@ -354,6 +352,56 @@ SetActualPrice sets ActualPrice field to given value.
 
 HasActualPrice returns a boolean if a field has been set.
 
+### GetActualType
+
+`func (o *QueryAlgoOrderResponse) GetActualType() string`
+
+GetActualType returns the ActualType field if non-nil, zero value otherwise.
+
+### GetActualTypeOk
+
+`func (o *QueryAlgoOrderResponse) GetActualTypeOk() (*string, bool)`
+
+GetActualTypeOk returns a tuple with the ActualType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActualType
+
+`func (o *QueryAlgoOrderResponse) SetActualType(v string)`
+
+SetActualType sets ActualType field to given value.
+
+### HasActualType
+
+`func (o *QueryAlgoOrderResponse) HasActualType() bool`
+
+HasActualType returns a boolean if a field has been set.
+
+### GetActualQty
+
+`func (o *QueryAlgoOrderResponse) GetActualQty() string`
+
+GetActualQty returns the ActualQty field if non-nil, zero value otherwise.
+
+### GetActualQtyOk
+
+`func (o *QueryAlgoOrderResponse) GetActualQtyOk() (*string, bool)`
+
+GetActualQtyOk returns a tuple with the ActualQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActualQty
+
+`func (o *QueryAlgoOrderResponse) SetActualQty(v string)`
+
+SetActualQty sets ActualQty field to given value.
+
+### HasActualQty
+
+`func (o *QueryAlgoOrderResponse) HasActualQty() bool`
+
+HasActualQty returns a boolean if a field has been set.
+
 ### GetTriggerPrice
 
 `func (o *QueryAlgoOrderResponse) GetTriggerPrice() string`
@@ -428,106 +476,6 @@ SetIcebergQuantity sets IcebergQuantity field to given value.
 `func (o *QueryAlgoOrderResponse) HasIcebergQuantity() bool`
 
 HasIcebergQuantity returns a boolean if a field has been set.
-
-### GetTpTriggerPrice
-
-`func (o *QueryAlgoOrderResponse) GetTpTriggerPrice() string`
-
-GetTpTriggerPrice returns the TpTriggerPrice field if non-nil, zero value otherwise.
-
-### GetTpTriggerPriceOk
-
-`func (o *QueryAlgoOrderResponse) GetTpTriggerPriceOk() (*string, bool)`
-
-GetTpTriggerPriceOk returns a tuple with the TpTriggerPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTpTriggerPrice
-
-`func (o *QueryAlgoOrderResponse) SetTpTriggerPrice(v string)`
-
-SetTpTriggerPrice sets TpTriggerPrice field to given value.
-
-### HasTpTriggerPrice
-
-`func (o *QueryAlgoOrderResponse) HasTpTriggerPrice() bool`
-
-HasTpTriggerPrice returns a boolean if a field has been set.
-
-### GetTpPrice
-
-`func (o *QueryAlgoOrderResponse) GetTpPrice() string`
-
-GetTpPrice returns the TpPrice field if non-nil, zero value otherwise.
-
-### GetTpPriceOk
-
-`func (o *QueryAlgoOrderResponse) GetTpPriceOk() (*string, bool)`
-
-GetTpPriceOk returns a tuple with the TpPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTpPrice
-
-`func (o *QueryAlgoOrderResponse) SetTpPrice(v string)`
-
-SetTpPrice sets TpPrice field to given value.
-
-### HasTpPrice
-
-`func (o *QueryAlgoOrderResponse) HasTpPrice() bool`
-
-HasTpPrice returns a boolean if a field has been set.
-
-### GetSlTriggerPrice
-
-`func (o *QueryAlgoOrderResponse) GetSlTriggerPrice() string`
-
-GetSlTriggerPrice returns the SlTriggerPrice field if non-nil, zero value otherwise.
-
-### GetSlTriggerPriceOk
-
-`func (o *QueryAlgoOrderResponse) GetSlTriggerPriceOk() (*string, bool)`
-
-GetSlTriggerPriceOk returns a tuple with the SlTriggerPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSlTriggerPrice
-
-`func (o *QueryAlgoOrderResponse) SetSlTriggerPrice(v string)`
-
-SetSlTriggerPrice sets SlTriggerPrice field to given value.
-
-### HasSlTriggerPrice
-
-`func (o *QueryAlgoOrderResponse) HasSlTriggerPrice() bool`
-
-HasSlTriggerPrice returns a boolean if a field has been set.
-
-### GetSlPrice
-
-`func (o *QueryAlgoOrderResponse) GetSlPrice() string`
-
-GetSlPrice returns the SlPrice field if non-nil, zero value otherwise.
-
-### GetSlPriceOk
-
-`func (o *QueryAlgoOrderResponse) GetSlPriceOk() (*string, bool)`
-
-GetSlPriceOk returns a tuple with the SlPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSlPrice
-
-`func (o *QueryAlgoOrderResponse) SetSlPrice(v string)`
-
-SetSlPrice sets SlPrice field to given value.
-
-### HasSlPrice
-
-`func (o *QueryAlgoOrderResponse) HasSlPrice() bool`
-
-HasSlPrice returns a boolean if a field has been set.
 
 ### GetTpOrderType
 

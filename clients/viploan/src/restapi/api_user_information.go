@@ -124,7 +124,7 @@ func (r ApiGetVIPLoanAccruedInterestRequest) EndTime(endTime int64) ApiGetVIPLoa
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Page number, default 1, minimum 1
 func (r ApiGetVIPLoanAccruedInterestRequest) Current(current int64) ApiGetVIPLoanAccruedInterestRequest {
 	r.current = &current
 	return r
@@ -156,7 +156,7 @@ https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accru
 @param loanCoin -
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
+@param current -  Page number, default 1, minimum 1
 @param limit -  Default: 10; max: 100
 @param recvWindow -
 @return ApiGetVIPLoanAccruedInterestRequest
@@ -240,7 +240,7 @@ func (r ApiGetVIPLoanOngoingOrdersRequest) CollateralCoin(collateralCoin string)
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Page number, default 1, minimum 1
 func (r ApiGetVIPLoanOngoingOrdersRequest) Current(current int64) ApiGetVIPLoanOngoingOrdersRequest {
 	r.current = &current
 	return r
@@ -272,7 +272,7 @@ https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoi
 @param collateralAccountId -
 @param loanCoin -
 @param collateralCoin -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
+@param current -  Page number, default 1, minimum 1
 @param limit -  Default: 10; max: 100
 @param recvWindow -
 @return ApiGetVIPLoanOngoingOrdersRequest
@@ -332,7 +332,7 @@ type ApiQueryApplicationStatusRequest struct {
 	recvWindow *int64
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Page number, default 1, minimum 1
 func (r ApiQueryApplicationStatusRequest) Current(current int64) ApiQueryApplicationStatusRequest {
 	r.current = &current
 	return r
@@ -360,7 +360,7 @@ Get /sapi/v1/loan/vip/request/data
 https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
+@param current -  Page number, default 1, minimum 1
 @param limit -  Default: 10; max: 100
 @param recvWindow -
 @return ApiQueryApplicationStatusRequest

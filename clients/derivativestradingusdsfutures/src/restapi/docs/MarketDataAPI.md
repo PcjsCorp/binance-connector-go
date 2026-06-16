@@ -5,6 +5,7 @@ All URIs are relative to *https://fapi.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AdlRisk**](MarketDataAPI.md#AdlRisk) | **Get** /fapi/v1/symbolAdlRisk | ADL Risk
+[**AssetIndex**](MarketDataAPI.md#AssetIndex) | **Get** /fapi/v1/assetIndex | Asset Index
 [**Basis**](MarketDataAPI.md#Basis) | **Get** /futures/data/basis | Basis
 [**CheckServerTime**](MarketDataAPI.md#CheckServerTime) | **Get** /fapi/v1/time | Check Server Time
 [**CompositeIndexSymbolInformation**](MarketDataAPI.md#CompositeIndexSymbolInformation) | **Get** /fapi/v1/indexInfo | Composite Index Symbol Information
@@ -18,7 +19,6 @@ Method        | HTTP request  | Description
 [**LongShortRatio**](MarketDataAPI.md#LongShortRatio) | **Get** /futures/data/globalLongShortAccountRatio | Long/Short Ratio
 [**MarkPrice**](MarketDataAPI.md#MarkPrice) | **Get** /fapi/v1/premiumIndex | Mark Price
 [**MarkPriceKlineCandlestickData**](MarketDataAPI.md#MarkPriceKlineCandlestickData) | **Get** /fapi/v1/markPriceKlines | Mark Price Kline/Candlestick Data
-[**MultiAssetsModeAssetIndex**](MarketDataAPI.md#MultiAssetsModeAssetIndex) | **Get** /fapi/v1/assetIndex | Multi-Assets Mode Asset Index
 [**OldTradesLookup**](MarketDataAPI.md#OldTradesLookup) | **Get** /fapi/v1/historicalTrades | Old Trades Lookup (MARKET_DATA)
 [**OpenInterest**](MarketDataAPI.md#OpenInterest) | **Get** /fapi/v1/openInterest | Open Interest
 [**OpenInterestStatistics**](MarketDataAPI.md#OpenInterestStatistics) | **Get** /futures/data/openInterestHist | Open Interest Statistics
@@ -108,6 +108,74 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
+## AssetIndex
+
+> AssetIndexResponse AssetIndex(ctx).Symbol(symbol).Execute()
+
+Asset Index
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "symbol_example" // string |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketDataAPI.AssetIndex(context.Background()).Symbol(symbol).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketDataAPI.AssetIndex``: %v\n", err)
+		return
+	}
+
+	// response from `AssetIndex`: AssetIndexResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+
+### Return type
+
+[**AssetIndexResponse**](AssetIndexResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
 ## Basis
 
 > BasisResponse Basis(ctx).Pair(pair).ContractType(contractType).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
@@ -131,7 +199,7 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | 
+	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
 	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | 
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)
@@ -164,7 +232,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** |  | 
+ **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
  **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) |  | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
  **limit** | **int64** | Default 100; max 1000 | 
@@ -418,7 +486,7 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | 
+	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
 	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | 
 	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
@@ -451,7 +519,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** |  | 
+ **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
  **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) |  | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
  **startTime** | **int64** |  | 
@@ -700,7 +768,7 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | 
+	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
 	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
@@ -732,7 +800,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** |  | 
+ **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
@@ -1037,74 +1105,6 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**MarkPriceKlineCandlestickDataResponse**](MarkPriceKlineCandlestickDataResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
-## MultiAssetsModeAssetIndex
-
-> MultiAssetsModeAssetIndexResponse MultiAssetsModeAssetIndex(ctx).Symbol(symbol).Execute()
-
-Multi-Assets Mode Asset Index
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "symbol_example" // string |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.MarketDataAPI.MultiAssetsModeAssetIndex(context.Background()).Symbol(symbol).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `MarketDataAPI.MultiAssetsModeAssetIndex``: %v\n", err)
-		return
-	}
-
-	// response from `MultiAssetsModeAssetIndex`: MultiAssetsModeAssetIndexResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
-
-### Return type
-
-[**MultiAssetsModeAssetIndexResponse**](MultiAssetsModeAssetIndexResponse.md)
 
 ### Authorization
 
@@ -1502,7 +1502,7 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | 
+	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1530,7 +1530,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** |  | 
+ **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
 
 ### Return type
 

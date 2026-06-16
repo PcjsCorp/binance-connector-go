@@ -278,6 +278,68 @@ func (a *MarketAPIService) AllMarketTickersStreamsExecute(r ApiAllMarketTickersS
 	return resp, nil
 }
 
+type ApiAssetIndexRequest struct {
+	ApiService *MarketAPIService
+	id         *string
+}
+
+// Unique WebSocket request ID.
+func (r ApiAssetIndexRequest) Id(id string) ApiAssetIndexRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiAssetIndexRequest) Execute() (*common.StreamHandler[models.AssetIndexResponse], error) {
+	return r.ApiService.AssetIndexExecute(r)
+}
+
+/*
+AssetIndex Asset Index
+/!assetIndex@arr
+
+https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Asset-Index
+
+@param id Unique WebSocket request ID.
+@return ApiAssetIndexRequest
+*/
+func (a *MarketAPIService) AssetIndex() ApiAssetIndexRequest {
+	return ApiAssetIndexRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AssetIndexResponse
+func (a *MarketAPIService) AssetIndexExecute(r ApiAssetIndexRequest) (*common.StreamHandler[models.AssetIndexResponse], error) {
+
+	localStream := common.WsStreamsPlaceholder(
+		"/!assetIndex@arr"[1:],
+		map[string]string{
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
+		},
+	)
+	ws := a.client.WsMarket
+
+	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
+	resp, err := common.CreateStreamHandler[models.AssetIndexResponse](&common.StreamHandlerWrapper{
+		WebsocketStreams: ws,
+	}, localStream, id, false)
+
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
 type ApiCompositeIndexSymbolInformationStreamsRequest struct {
 	ApiService *MarketAPIService
 	symbol     *string
@@ -1013,68 +1075,6 @@ func (a *MarketAPIService) MarkPriceStreamForAllMarketExecute(r ApiMarkPriceStre
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.MarkPriceStreamForAllMarketResponse](&common.StreamHandlerWrapper{
-		WebsocketStreams: ws,
-	}, localStream, id, false)
-
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
-}
-
-type ApiMultiAssetsModeAssetIndexRequest struct {
-	ApiService *MarketAPIService
-	id         *string
-}
-
-// Unique WebSocket request ID.
-func (r ApiMultiAssetsModeAssetIndexRequest) Id(id string) ApiMultiAssetsModeAssetIndexRequest {
-	r.id = &id
-	return r
-}
-
-func (r ApiMultiAssetsModeAssetIndexRequest) Execute() (*common.StreamHandler[models.MultiAssetsModeAssetIndexResponse], error) {
-	return r.ApiService.MultiAssetsModeAssetIndexExecute(r)
-}
-
-/*
-MultiAssetsModeAssetIndex Multi-Assets Mode Asset Index
-/!assetIndex@arr
-
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Multi-Assets-Mode-Asset-Index
-
-@param id Unique WebSocket request ID.
-@return ApiMultiAssetsModeAssetIndexRequest
-*/
-func (a *MarketAPIService) MultiAssetsModeAssetIndex() ApiMultiAssetsModeAssetIndexRequest {
-	return ApiMultiAssetsModeAssetIndexRequest{
-		ApiService: a,
-	}
-}
-
-// Execute executes the request
-//
-//	@return MultiAssetsModeAssetIndexResponse
-func (a *MarketAPIService) MultiAssetsModeAssetIndexExecute(r ApiMultiAssetsModeAssetIndexRequest) (*common.StreamHandler[models.MultiAssetsModeAssetIndexResponse], error) {
-
-	localStream := common.WsStreamsPlaceholder(
-		"/!assetIndex@arr"[1:],
-		map[string]string{
-			"id": func() string {
-				if r.id == nil {
-					return ""
-				}
-				return *r.id
-			}(),
-		},
-	)
-	ws := a.client.WsMarket
-
-	id := []any{common.GenerateUUID()}
-	if r.id != nil {
-		id = []any{*r.id}
-	}
-	resp, err := common.CreateStreamHandler[models.MultiAssetsModeAssetIndexResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
 

@@ -7,12 +7,12 @@ Name         | Type          | Description.  | Notes
 **E** | Pointer to **string** |  | [optional] 
 **E** | Pointer to **int64** |  | [optional] 
 **S** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
 **Ct** | Pointer to **string** |  | [optional] 
 **Dt** | Pointer to **int64** |  | [optional] 
 **Ot** | Pointer to **int64** |  | [optional] 
 **Cs** | Pointer to **string** |  | [optional] 
 **Bks** | Pointer to [**[]ContractInfoStreamResponseBksInner**](ContractInfoStreamResponseBksInner.md) |  | [optional] 
+**St** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -107,31 +107,6 @@ SetS sets S field to given value.
 `func (o *ContractInfoStreamResponse) HasS() bool`
 
 HasS returns a boolean if a field has been set.
-
-### GetPs
-
-`func (o *ContractInfoStreamResponse) GetPs() string`
-
-GetPs returns the Ps field if non-nil, zero value otherwise.
-
-### GetPsOk
-
-`func (o *ContractInfoStreamResponse) GetPsOk() (*string, bool)`
-
-GetPsOk returns a tuple with the Ps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPs
-
-`func (o *ContractInfoStreamResponse) SetPs(v string)`
-
-SetPs sets Ps field to given value.
-
-### HasPs
-
-`func (o *ContractInfoStreamResponse) HasPs() bool`
-
-HasPs returns a boolean if a field has been set.
 
 ### GetCt
 
@@ -257,6 +232,31 @@ SetBks sets Bks field to given value.
 `func (o *ContractInfoStreamResponse) HasBks() bool`
 
 HasBks returns a boolean if a field has been set.
+
+### GetSt
+
+`func (o *ContractInfoStreamResponse) GetSt() int64`
+
+GetSt returns the St field if non-nil, zero value otherwise.
+
+### GetStOk
+
+`func (o *ContractInfoStreamResponse) GetStOk() (*int64, bool)`
+
+GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSt
+
+`func (o *ContractInfoStreamResponse) SetSt(v int64)`
+
+SetSt sets St field to given value.
+
+### HasSt
+
+`func (o *ContractInfoStreamResponse) HasSt() bool`
+
+HasSt returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

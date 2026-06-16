@@ -14,6 +14,7 @@ Name         | Type          | Description.  | Notes
 **L** | Pointer to **int64** |  | [optional] 
 **T** | Pointer to **int64** |  | [optional] 
 **M** | Pointer to **bool** |  | [optional] 
+**St** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetM sets M field to given value.
 `func (o *AggregateTradeStreamsResponse) HasM() bool`
 
 HasM returns a boolean if a field has been set.
+
+### GetSt
+
+`func (o *AggregateTradeStreamsResponse) GetSt() int64`
+
+GetSt returns the St field if non-nil, zero value otherwise.
+
+### GetStOk
+
+`func (o *AggregateTradeStreamsResponse) GetStOk() (*int64, bool)`
+
+GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSt
+
+`func (o *AggregateTradeStreamsResponse) SetSt(v int64)`
+
+SetSt sets St field to given value.
+
+### HasSt
+
+`func (o *AggregateTradeStreamsResponse) HasSt() bool`
+
+HasSt returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

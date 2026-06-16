@@ -1121,6 +1121,7 @@ func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float32) ApiModify
 	return r
 }
 
+// **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.**
 func (r ApiModifyIsolatedPositionMarginRequest) Type(type_ models.PlaceMultipleOrdersBatchOrdersParameterInnerType) ApiModifyIsolatedPositionMarginRequest {
 	r.type_ = &type_
 	return r
@@ -1150,7 +1151,7 @@ https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param amount -
-@param type_ -
+@param type_ -  **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
 @param recvWindow -
 @return ApiModifyIsolatedPositionMarginRequest
@@ -1435,6 +1436,7 @@ func (r ApiNewOrderRequest) Side(side models.ModifyMultipleOrdersBatchOrdersPara
 	return r
 }
 
+// **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.**
 func (r ApiNewOrderRequest) Type(type_ models.PlaceMultipleOrdersBatchOrdersParameterInnerType) ApiNewOrderRequest {
 	r.type_ = &type_
 	return r
@@ -1504,7 +1506,7 @@ func (r ApiNewOrderRequest) WorkingType(workingType models.PlaceMultipleOrdersBa
 	return r
 }
 
-// \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
 func (r ApiNewOrderRequest) PriceProtect(priceProtect string) ApiNewOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
@@ -1546,7 +1548,7 @@ https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param side -  `SELL`, `BUY`
-@param type_ -
+@param type_ -  **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
 @param timeInForce -
 @param quantity -  quantity measured by contract number, Cannot be sent with `closePosition`=`true`
@@ -1558,7 +1560,7 @@ https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest
 @param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
 @param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%
 @param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceProtect -  \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
+@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
 @param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
 @param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `EXPIRE_MAKER`

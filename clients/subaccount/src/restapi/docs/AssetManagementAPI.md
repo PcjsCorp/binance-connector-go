@@ -473,7 +473,7 @@ No authorization required
 
 ## GetSubAccountDepositHistory
 
-> GetSubAccountDepositHistoryResponse GetSubAccountDepositHistory(ctx).Email(email).Coin(coin).Status(status).StartTime(startTime).EndTime(endTime).Limit(limit).Offset(offset).RecvWindow(recvWindow).TxId(txId).Execute()
+> GetSubAccountDepositHistoryResponse GetSubAccountDepositHistory(ctx).Email(email).IncludeSource(includeSource).Coin(coin).Status(status).StartTime(startTime).EndTime(endTime).Limit(limit).Offset(offset).RecvWindow(recvWindow).TxId(txId).Execute()
 
 Get Sub-account Deposit History (For Master Account) (USER_DATA)
 
@@ -495,6 +495,7 @@ import (
 
 func main() {
 	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	includeSource := false // bool | Default: `false`, return `sourceAddress`field when set to `true` (optional)
 	coin := "coin_example" // string |  (optional)
 	status := int64(789) // int64 | 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success) (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
@@ -511,7 +512,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetSubAccountDepositHistory(context.Background()).Email(email).Coin(coin).Status(status).StartTime(startTime).EndTime(endTime).Limit(limit).Offset(offset).RecvWindow(recvWindow).TxId(txId).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetSubAccountDepositHistory(context.Background()).Email(email).IncludeSource(includeSource).Coin(coin).Status(status).StartTime(startTime).EndTime(endTime).Limit(limit).Offset(offset).RecvWindow(recvWindow).TxId(txId).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetManagementAPI.GetSubAccountDepositHistory``: %v\n", err)
 		return
@@ -531,6 +532,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** | [Sub-account email](#email-address) | 
+ **includeSource** | **bool** | Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60; | 
  **coin** | **string** |  | 
  **status** | **int64** | 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success) | 
  **startTime** | **int64** |  | 

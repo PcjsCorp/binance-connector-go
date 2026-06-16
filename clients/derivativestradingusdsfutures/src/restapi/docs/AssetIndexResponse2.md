@@ -1,4 +1,4 @@
-# MultiAssetsModeAssetIndexResponse2
+# AssetIndexResponse2
 
 ## Properties
 
@@ -7,20 +7,20 @@ Name         | Type          | Description.  | Notes
 
 ## Methods
 
-### NewMultiAssetsModeAssetIndexResponse2
+### NewAssetIndexResponse2
 
-`func NewMultiAssetsModeAssetIndexResponse2() *MultiAssetsModeAssetIndexResponse2`
+`func NewAssetIndexResponse2() *AssetIndexResponse2`
 
-NewMultiAssetsModeAssetIndexResponse2 instantiates a new MultiAssetsModeAssetIndexResponse2 object
+NewAssetIndexResponse2 instantiates a new AssetIndexResponse2 object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewMultiAssetsModeAssetIndexResponse2WithDefaults
+### NewAssetIndexResponse2WithDefaults
 
-`func NewMultiAssetsModeAssetIndexResponse2WithDefaults() *MultiAssetsModeAssetIndexResponse2`
+`func NewAssetIndexResponse2WithDefaults() *AssetIndexResponse2`
 
-NewMultiAssetsModeAssetIndexResponse2WithDefaults instantiates a new MultiAssetsModeAssetIndexResponse2 object
+NewAssetIndexResponse2WithDefaults instantiates a new AssetIndexResponse2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 

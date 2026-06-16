@@ -7,13 +7,14 @@ Name         | Type          | Description.  | Notes
 **E** | Pointer to **string** |  | [optional] 
 **U** | Pointer to **int64** |  | [optional] 
 **S** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
 **B** | Pointer to **string** |  | [optional] 
 **B** | Pointer to **string** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
 **T** | Pointer to **int64** |  | [optional] 
 **E** | Pointer to **int64** |  | [optional] 
+**Ps** | Pointer to **string** |  | [optional] 
+**St** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -108,31 +109,6 @@ SetS sets S field to given value.
 `func (o *AllBookTickersStreamResponse) HasS() bool`
 
 HasS returns a boolean if a field has been set.
-
-### GetPs
-
-`func (o *AllBookTickersStreamResponse) GetPs() string`
-
-GetPs returns the Ps field if non-nil, zero value otherwise.
-
-### GetPsOk
-
-`func (o *AllBookTickersStreamResponse) GetPsOk() (*string, bool)`
-
-GetPsOk returns a tuple with the Ps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPs
-
-`func (o *AllBookTickersStreamResponse) SetPs(v string)`
-
-SetPs sets Ps field to given value.
-
-### HasPs
-
-`func (o *AllBookTickersStreamResponse) HasPs() bool`
-
-HasPs returns a boolean if a field has been set.
 
 ### GetB
 
@@ -283,6 +259,56 @@ SetE sets E field to given value.
 `func (o *AllBookTickersStreamResponse) HasE() bool`
 
 HasE returns a boolean if a field has been set.
+
+### GetPs
+
+`func (o *AllBookTickersStreamResponse) GetPs() string`
+
+GetPs returns the Ps field if non-nil, zero value otherwise.
+
+### GetPsOk
+
+`func (o *AllBookTickersStreamResponse) GetPsOk() (*string, bool)`
+
+GetPsOk returns a tuple with the Ps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPs
+
+`func (o *AllBookTickersStreamResponse) SetPs(v string)`
+
+SetPs sets Ps field to given value.
+
+### HasPs
+
+`func (o *AllBookTickersStreamResponse) HasPs() bool`
+
+HasPs returns a boolean if a field has been set.
+
+### GetSt
+
+`func (o *AllBookTickersStreamResponse) GetSt() int64`
+
+GetSt returns the St field if non-nil, zero value otherwise.
+
+### GetStOk
+
+`func (o *AllBookTickersStreamResponse) GetStOk() (*int64, bool)`
+
+GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSt
+
+`func (o *AllBookTickersStreamResponse) SetSt(v int64)`
+
+SetSt sets St field to given value.
+
+### HasSt
+
+`func (o *AllBookTickersStreamResponse) HasSt() bool`
+
+HasSt returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

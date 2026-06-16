@@ -20,12 +20,12 @@ type ContractInfoStreamResponse struct {
 	Smalle               *string                              `json:"e,omitempty"`
 	E                    *int64                               `json:"E,omitempty"`
 	Smalls               *string                              `json:"s,omitempty"`
-	Smallps              *string                              `json:"ps,omitempty"`
 	Smallct              *string                              `json:"ct,omitempty"`
 	Smalldt              *int64                               `json:"dt,omitempty"`
 	Smallot              *int64                               `json:"ot,omitempty"`
 	Smallcs              *string                              `json:"cs,omitempty"`
 	Bks                  []ContractInfoStreamResponseBksInner `json:"bks,omitempty"`
+	Smallst              *int64                               `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,38 +142,6 @@ func (o *ContractInfoStreamResponse) HasSmalls() bool {
 // SetS gets a reference to the given string and assigns it to the S field.
 func (o *ContractInfoStreamResponse) SetSmalls(v string) {
 	o.Smalls = &v
-}
-
-// GetPs returns the Ps field value if set, zero value otherwise.
-func (o *ContractInfoStreamResponse) GetSmallps() string {
-	if o == nil || common.IsNil(o.Smallps) {
-		var ret string
-		return ret
-	}
-	return *o.Smallps
-}
-
-// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContractInfoStreamResponse) GetSmallpsOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smallps) {
-		return nil, false
-	}
-	return o.Smallps, true
-}
-
-// HasPs returns a boolean if a field has been set.
-func (o *ContractInfoStreamResponse) HasSmallps() bool {
-	if o != nil && !common.IsNil(o.Smallps) {
-		return true
-	}
-
-	return false
-}
-
-// SetPs gets a reference to the given string and assigns it to the Ps field.
-func (o *ContractInfoStreamResponse) SetSmallps(v string) {
-	o.Smallps = &v
 }
 
 // GetCt returns the Ct field value if set, zero value otherwise.
@@ -336,6 +304,38 @@ func (o *ContractInfoStreamResponse) SetBks(v []ContractInfoStreamResponseBksInn
 	o.Bks = v
 }
 
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *ContractInfoStreamResponse) GetSmallst() int64 {
+	if o == nil || common.IsNil(o.Smallst) {
+		var ret int64
+		return ret
+	}
+	return *o.Smallst
+}
+
+// GetStOk returns a tuple with the St field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContractInfoStreamResponse) GetSmallstOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallst) {
+		return nil, false
+	}
+	return o.Smallst, true
+}
+
+// HasSt returns a boolean if a field has been set.
+func (o *ContractInfoStreamResponse) HasSmallst() bool {
+	if o != nil && !common.IsNil(o.Smallst) {
+		return true
+	}
+
+	return false
+}
+
+// SetSt gets a reference to the given int64 and assigns it to the St field.
+func (o *ContractInfoStreamResponse) SetSmallst(v int64) {
+	o.Smallst = &v
+}
+
 func (o ContractInfoStreamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -355,9 +355,6 @@ func (o ContractInfoStreamResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smalls) {
 		toSerialize["s"] = o.Smalls
 	}
-	if !common.IsNil(o.Smallps) {
-		toSerialize["ps"] = o.Smallps
-	}
 	if !common.IsNil(o.Smallct) {
 		toSerialize["ct"] = o.Smallct
 	}
@@ -372,6 +369,9 @@ func (o ContractInfoStreamResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Bks) {
 		toSerialize["bks"] = o.Bks
+	}
+	if !common.IsNil(o.Smallst) {
+		toSerialize["st"] = o.Smallst
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -398,12 +398,12 @@ func (o *ContractInfoStreamResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "e")
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "s")
-		delete(additionalProperties, "ps")
 		delete(additionalProperties, "ct")
 		delete(additionalProperties, "dt")
 		delete(additionalProperties, "ot")
 		delete(additionalProperties, "cs")
 		delete(additionalProperties, "bks")
+		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
 

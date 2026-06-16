@@ -12,11 +12,11 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// checks if the MultiAssetsModeAssetIndexResponseInner type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &MultiAssetsModeAssetIndexResponseInner{}
+// checks if the AssetIndexResponseInner type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &AssetIndexResponseInner{}
 
-// MultiAssetsModeAssetIndexResponseInner struct for MultiAssetsModeAssetIndexResponseInner
-type MultiAssetsModeAssetIndexResponseInner struct {
+// AssetIndexResponseInner struct for AssetIndexResponseInner
+type AssetIndexResponseInner struct {
 	Smalle               *string `json:"e,omitempty"`
 	E                    *int64  `json:"E,omitempty"`
 	Smalls               *string `json:"s,omitempty"`
@@ -32,27 +32,27 @@ type MultiAssetsModeAssetIndexResponseInner struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _MultiAssetsModeAssetIndexResponseInner MultiAssetsModeAssetIndexResponseInner
+type _AssetIndexResponseInner AssetIndexResponseInner
 
-// NewMultiAssetsModeAssetIndexResponseInner instantiates a new MultiAssetsModeAssetIndexResponseInner object
+// NewAssetIndexResponseInner instantiates a new AssetIndexResponseInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMultiAssetsModeAssetIndexResponseInner() *MultiAssetsModeAssetIndexResponseInner {
-	this := MultiAssetsModeAssetIndexResponseInner{}
+func NewAssetIndexResponseInner() *AssetIndexResponseInner {
+	this := AssetIndexResponseInner{}
 	return &this
 }
 
-// NewMultiAssetsModeAssetIndexResponseInnerWithDefaults instantiates a new MultiAssetsModeAssetIndexResponseInner object
+// NewAssetIndexResponseInnerWithDefaults instantiates a new AssetIndexResponseInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMultiAssetsModeAssetIndexResponseInnerWithDefaults() *MultiAssetsModeAssetIndexResponseInner {
-	this := MultiAssetsModeAssetIndexResponseInner{}
+func NewAssetIndexResponseInnerWithDefaults() *AssetIndexResponseInner {
+	this := AssetIndexResponseInner{}
 	return &this
 }
 
 // GetE returns the E field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalle() string {
+func (o *AssetIndexResponseInner) GetSmalle() string {
 	if o == nil || common.IsNil(o.Smalle) {
 		var ret string
 		return ret
@@ -62,7 +62,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalle() string {
 
 // GetEOk returns a tuple with the E field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalleOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmalleOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smalle) {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalleOk() (*string, bool) {
 }
 
 // HasE returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalle() bool {
+func (o *AssetIndexResponseInner) HasSmalle() bool {
 	if o != nil && !common.IsNil(o.Smalle) {
 		return true
 	}
@@ -79,12 +79,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalle() bool {
 }
 
 // SetE gets a reference to the given string and assigns it to the E field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmalle(v string) {
+func (o *AssetIndexResponseInner) SetSmalle(v string) {
 	o.Smalle = &v
 }
 
 // GetE returns the E field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetE() int64 {
+func (o *AssetIndexResponseInner) GetE() int64 {
 	if o == nil || common.IsNil(o.E) {
 		var ret int64
 		return ret
@@ -94,7 +94,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetE() int64 {
 
 // GetEOk returns a tuple with the E field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetEOk() (*int64, bool) {
+func (o *AssetIndexResponseInner) GetEOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.E) {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetEOk() (*int64, bool) {
 }
 
 // HasE returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasE() bool {
+func (o *AssetIndexResponseInner) HasE() bool {
 	if o != nil && !common.IsNil(o.E) {
 		return true
 	}
@@ -111,12 +111,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasE() bool {
 }
 
 // SetE gets a reference to the given int64 and assigns it to the E field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetE(v int64) {
+func (o *AssetIndexResponseInner) SetE(v int64) {
 	o.E = &v
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalls() string {
+func (o *AssetIndexResponseInner) GetSmalls() string {
 	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
@@ -126,7 +126,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalls() string {
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallsOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmallsOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallsOk() (*string, bool) {
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalls() bool {
+func (o *AssetIndexResponseInner) HasSmalls() bool {
 	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
@@ -143,12 +143,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalls() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmalls(v string) {
+func (o *AssetIndexResponseInner) SetSmalls(v string) {
 	o.Smalls = &v
 }
 
 // GetI returns the I field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalli() string {
+func (o *AssetIndexResponseInner) GetSmalli() string {
 	if o == nil || common.IsNil(o.Smalli) {
 		var ret string
 		return ret
@@ -158,7 +158,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalli() string {
 
 // GetIOk returns a tuple with the I field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalliOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmalliOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smalli) {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalliOk() (*string, bool) {
 }
 
 // HasI returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalli() bool {
+func (o *AssetIndexResponseInner) HasSmalli() bool {
 	if o != nil && !common.IsNil(o.Smalli) {
 		return true
 	}
@@ -175,12 +175,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalli() bool {
 }
 
 // SetI gets a reference to the given string and assigns it to the I field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmalli(v string) {
+func (o *AssetIndexResponseInner) SetSmalli(v string) {
 	o.Smalli = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallb() string {
+func (o *AssetIndexResponseInner) GetSmallb() string {
 	if o == nil || common.IsNil(o.Smallb) {
 		var ret string
 		return ret
@@ -190,7 +190,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallb() string {
 
 // GetBOk returns a tuple with the B field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallbOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmallbOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallb) {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallbOk() (*string, bool) {
 }
 
 // HasB returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmallb() bool {
+func (o *AssetIndexResponseInner) HasSmallb() bool {
 	if o != nil && !common.IsNil(o.Smallb) {
 		return true
 	}
@@ -207,12 +207,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmallb() bool {
 }
 
 // SetB gets a reference to the given string and assigns it to the B field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmallb(v string) {
+func (o *AssetIndexResponseInner) SetSmallb(v string) {
 	o.Smallb = &v
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalla() string {
+func (o *AssetIndexResponseInner) GetSmalla() string {
 	if o == nil || common.IsNil(o.Smalla) {
 		var ret string
 		return ret
@@ -222,7 +222,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmalla() string {
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallaOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmallaOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
@@ -230,7 +230,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallaOk() (*string, bool) {
 }
 
 // HasA returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalla() bool {
+func (o *AssetIndexResponseInner) HasSmalla() bool {
 	if o != nil && !common.IsNil(o.Smalla) {
 		return true
 	}
@@ -239,12 +239,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmalla() bool {
 }
 
 // SetA gets a reference to the given string and assigns it to the A field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmalla(v string) {
+func (o *AssetIndexResponseInner) SetSmalla(v string) {
 	o.Smalla = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetB() string {
+func (o *AssetIndexResponseInner) GetB() string {
 	if o == nil || common.IsNil(o.B) {
 		var ret string
 		return ret
@@ -254,7 +254,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetB() string {
 
 // GetBOk returns a tuple with the B field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetBOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetBOk() (*string, bool) {
 	if o == nil || common.IsNil(o.B) {
 		return nil, false
 	}
@@ -262,7 +262,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetBOk() (*string, bool) {
 }
 
 // HasB returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasB() bool {
+func (o *AssetIndexResponseInner) HasB() bool {
 	if o != nil && !common.IsNil(o.B) {
 		return true
 	}
@@ -271,12 +271,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasB() bool {
 }
 
 // SetB gets a reference to the given string and assigns it to the B field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetB(v string) {
+func (o *AssetIndexResponseInner) SetB(v string) {
 	o.B = &v
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetA() string {
+func (o *AssetIndexResponseInner) GetA() string {
 	if o == nil || common.IsNil(o.A) {
 		var ret string
 		return ret
@@ -286,7 +286,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetA() string {
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetAOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetAOk() (*string, bool) {
 	if o == nil || common.IsNil(o.A) {
 		return nil, false
 	}
@@ -294,7 +294,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetAOk() (*string, bool) {
 }
 
 // HasA returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasA() bool {
+func (o *AssetIndexResponseInner) HasA() bool {
 	if o != nil && !common.IsNil(o.A) {
 		return true
 	}
@@ -303,12 +303,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasA() bool {
 }
 
 // SetA gets a reference to the given string and assigns it to the A field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetA(v string) {
+func (o *AssetIndexResponseInner) SetA(v string) {
 	o.A = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallq() string {
+func (o *AssetIndexResponseInner) GetSmallq() string {
 	if o == nil || common.IsNil(o.Smallq) {
 		var ret string
 		return ret
@@ -318,7 +318,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallq() string {
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallqOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmallqOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallq) {
 		return nil, false
 	}
@@ -326,7 +326,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallqOk() (*string, bool) {
 }
 
 // HasQ returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmallq() bool {
+func (o *AssetIndexResponseInner) HasSmallq() bool {
 	if o != nil && !common.IsNil(o.Smallq) {
 		return true
 	}
@@ -335,12 +335,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmallq() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmallq(v string) {
+func (o *AssetIndexResponseInner) SetSmallq(v string) {
 	o.Smallq = &v
 }
 
 // GetG returns the G field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallg() string {
+func (o *AssetIndexResponseInner) GetSmallg() string {
 	if o == nil || common.IsNil(o.Smallg) {
 		var ret string
 		return ret
@@ -350,7 +350,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallg() string {
 
 // GetGOk returns a tuple with the G field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallgOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetSmallgOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallg) {
 		return nil, false
 	}
@@ -358,7 +358,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetSmallgOk() (*string, bool) {
 }
 
 // HasG returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasSmallg() bool {
+func (o *AssetIndexResponseInner) HasSmallg() bool {
 	if o != nil && !common.IsNil(o.Smallg) {
 		return true
 	}
@@ -367,12 +367,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasSmallg() bool {
 }
 
 // SetG gets a reference to the given string and assigns it to the G field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetSmallg(v string) {
+func (o *AssetIndexResponseInner) SetSmallg(v string) {
 	o.Smallg = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetQ() string {
+func (o *AssetIndexResponseInner) GetQ() string {
 	if o == nil || common.IsNil(o.Q) {
 		var ret string
 		return ret
@@ -382,7 +382,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetQ() string {
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetQOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetQOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Q) {
 		return nil, false
 	}
@@ -390,7 +390,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetQOk() (*string, bool) {
 }
 
 // HasQ returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasQ() bool {
+func (o *AssetIndexResponseInner) HasQ() bool {
 	if o != nil && !common.IsNil(o.Q) {
 		return true
 	}
@@ -399,12 +399,12 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasQ() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetQ(v string) {
+func (o *AssetIndexResponseInner) SetQ(v string) {
 	o.Q = &v
 }
 
 // GetG returns the G field value if set, zero value otherwise.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetG() string {
+func (o *AssetIndexResponseInner) GetG() string {
 	if o == nil || common.IsNil(o.G) {
 		var ret string
 		return ret
@@ -414,7 +414,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetG() string {
 
 // GetGOk returns a tuple with the G field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) GetGOk() (*string, bool) {
+func (o *AssetIndexResponseInner) GetGOk() (*string, bool) {
 	if o == nil || common.IsNil(o.G) {
 		return nil, false
 	}
@@ -422,7 +422,7 @@ func (o *MultiAssetsModeAssetIndexResponseInner) GetGOk() (*string, bool) {
 }
 
 // HasG returns a boolean if a field has been set.
-func (o *MultiAssetsModeAssetIndexResponseInner) HasG() bool {
+func (o *AssetIndexResponseInner) HasG() bool {
 	if o != nil && !common.IsNil(o.G) {
 		return true
 	}
@@ -431,11 +431,11 @@ func (o *MultiAssetsModeAssetIndexResponseInner) HasG() bool {
 }
 
 // SetG gets a reference to the given string and assigns it to the G field.
-func (o *MultiAssetsModeAssetIndexResponseInner) SetG(v string) {
+func (o *AssetIndexResponseInner) SetG(v string) {
 	o.G = &v
 }
 
-func (o MultiAssetsModeAssetIndexResponseInner) MarshalJSON() ([]byte, error) {
+func (o AssetIndexResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -443,7 +443,7 @@ func (o MultiAssetsModeAssetIndexResponseInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MultiAssetsModeAssetIndexResponseInner) ToMap() (map[string]interface{}, error) {
+func (o AssetIndexResponseInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Smalle) {
 		toSerialize["e"] = o.Smalle
@@ -489,16 +489,16 @@ func (o MultiAssetsModeAssetIndexResponseInner) ToMap() (map[string]interface{},
 	return toSerialize, nil
 }
 
-func (o *MultiAssetsModeAssetIndexResponseInner) UnmarshalJSON(data []byte) (err error) {
-	varMultiAssetsModeAssetIndexResponseInner := _MultiAssetsModeAssetIndexResponseInner{}
+func (o *AssetIndexResponseInner) UnmarshalJSON(data []byte) (err error) {
+	varAssetIndexResponseInner := _AssetIndexResponseInner{}
 
-	err = json.Unmarshal(data, &varMultiAssetsModeAssetIndexResponseInner)
+	err = json.Unmarshal(data, &varAssetIndexResponseInner)
 
 	if err != nil {
 		return err
 	}
 
-	*o = MultiAssetsModeAssetIndexResponseInner(varMultiAssetsModeAssetIndexResponseInner)
+	*o = AssetIndexResponseInner(varAssetIndexResponseInner)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -521,38 +521,38 @@ func (o *MultiAssetsModeAssetIndexResponseInner) UnmarshalJSON(data []byte) (err
 	return err
 }
 
-type NullableMultiAssetsModeAssetIndexResponseInner struct {
-	value *MultiAssetsModeAssetIndexResponseInner
+type NullableAssetIndexResponseInner struct {
+	value *AssetIndexResponseInner
 	isSet bool
 }
 
-func (v NullableMultiAssetsModeAssetIndexResponseInner) Get() *MultiAssetsModeAssetIndexResponseInner {
+func (v NullableAssetIndexResponseInner) Get() *AssetIndexResponseInner {
 	return v.value
 }
 
-func (v *NullableMultiAssetsModeAssetIndexResponseInner) Set(val *MultiAssetsModeAssetIndexResponseInner) {
+func (v *NullableAssetIndexResponseInner) Set(val *AssetIndexResponseInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMultiAssetsModeAssetIndexResponseInner) IsSet() bool {
+func (v NullableAssetIndexResponseInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMultiAssetsModeAssetIndexResponseInner) Unset() {
+func (v *NullableAssetIndexResponseInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMultiAssetsModeAssetIndexResponseInner(val *MultiAssetsModeAssetIndexResponseInner) *NullableMultiAssetsModeAssetIndexResponseInner {
-	return &NullableMultiAssetsModeAssetIndexResponseInner{value: val, isSet: true}
+func NewNullableAssetIndexResponseInner(val *AssetIndexResponseInner) *NullableAssetIndexResponseInner {
+	return &NullableAssetIndexResponseInner{value: val, isSet: true}
 }
 
-func (v NullableMultiAssetsModeAssetIndexResponseInner) MarshalJSON() ([]byte, error) {
+func (v NullableAssetIndexResponseInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMultiAssetsModeAssetIndexResponseInner) UnmarshalJSON(src []byte) error {
+func (v *NullableAssetIndexResponseInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

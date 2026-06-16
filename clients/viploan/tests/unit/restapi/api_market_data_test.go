@@ -280,4 +280,77 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test MarketDataAPIService QueryVIPLoanFixedRateMarket Success", func(t *testing.T) {
+
+		mockedJSON := `{"total":25,"rows":[{"requestId":1234567890,"requestNo":100001,"coin":"USDT","interestRate":"0.05","duration":30,"minimumAmount":"100","availableAmount":"1000000","estimatedInterest":"4109.59"}]}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/loan/vip/fixed/market", r.URL.Path)
+			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryVIPLoanFixedRateMarketResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceVipLoanClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).LoanCoin("loanCoin_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryVIPLoanFixedRateMarketResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryVIPLoanFixedRateMarketResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketDataAPIService QueryVIPLoanFixedRateMarket Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceVipLoanClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test MarketDataAPIService QueryVIPLoanFixedRateMarket Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceVipLoanClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 }

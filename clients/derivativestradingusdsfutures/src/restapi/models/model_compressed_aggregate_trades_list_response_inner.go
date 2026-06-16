@@ -20,6 +20,7 @@ type CompressedAggregateTradesListResponseInner struct {
 	A                    *int64  `json:"a,omitempty"`
 	P                    *string `json:"p,omitempty"`
 	Q                    *string `json:"q,omitempty"`
+	Nq                   *string `json:"nq,omitempty"`
 	F                    *int64  `json:"f,omitempty"`
 	L                    *int64  `json:"l,omitempty"`
 	T                    *int64  `json:"T,omitempty"`
@@ -140,6 +141,38 @@ func (o *CompressedAggregateTradesListResponseInner) HasQ() bool {
 // SetQ gets a reference to the given string and assigns it to the Q field.
 func (o *CompressedAggregateTradesListResponseInner) SetQ(v string) {
 	o.Q = &v
+}
+
+// GetNq returns the Nq field value if set, zero value otherwise.
+func (o *CompressedAggregateTradesListResponseInner) GetNq() string {
+	if o == nil || common.IsNil(o.Nq) {
+		var ret string
+		return ret
+	}
+	return *o.Nq
+}
+
+// GetNqOk returns a tuple with the Nq field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompressedAggregateTradesListResponseInner) GetNqOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Nq) {
+		return nil, false
+	}
+	return o.Nq, true
+}
+
+// HasNq returns a boolean if a field has been set.
+func (o *CompressedAggregateTradesListResponseInner) HasNq() bool {
+	if o != nil && !common.IsNil(o.Nq) {
+		return true
+	}
+
+	return false
+}
+
+// SetNq gets a reference to the given string and assigns it to the Nq field.
+func (o *CompressedAggregateTradesListResponseInner) SetNq(v string) {
+	o.Nq = &v
 }
 
 // GetF returns the F field value if set, zero value otherwise.
@@ -289,6 +322,9 @@ func (o CompressedAggregateTradesListResponseInner) ToMap() (map[string]interfac
 	if !common.IsNil(o.Q) {
 		toSerialize["q"] = o.Q
 	}
+	if !common.IsNil(o.Nq) {
+		toSerialize["nq"] = o.Nq
+	}
 	if !common.IsNil(o.F) {
 		toSerialize["f"] = o.F
 	}
@@ -326,6 +362,7 @@ func (o *CompressedAggregateTradesListResponseInner) UnmarshalJSON(data []byte) 
 		delete(additionalProperties, "a")
 		delete(additionalProperties, "p")
 		delete(additionalProperties, "q")
+		delete(additionalProperties, "nq")
 		delete(additionalProperties, "f")
 		delete(additionalProperties, "l")
 		delete(additionalProperties, "T")

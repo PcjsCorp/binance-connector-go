@@ -1,5 +1,11 @@
 ### Changelog
 
+## 1.8.0 - 2026-06-16
+
+### Added (1)
+
+- `getYieldArenaActivities()` (`GET /sapi/v1/earn/arena/activities`)
+
 ## 1.7.0 - 2026-05-20
 
 ### Changed (3)

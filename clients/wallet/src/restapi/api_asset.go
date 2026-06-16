@@ -183,6 +183,7 @@ type ApiDustConvertRequest struct {
 	ctx                              context.Context
 	ApiService                       *AssetAPIService
 	asset                            *string
+	accountType                      *string
 	clientId                         *string
 	targetAsset                      *string
 	thirdPartyClientId               *string
@@ -191,6 +192,12 @@ type ApiDustConvertRequest struct {
 
 func (r ApiDustConvertRequest) Asset(asset string) ApiDustConvertRequest {
 	r.asset = &asset
+	return r
+}
+
+// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
+func (r ApiDustConvertRequest) AccountType(accountType string) ApiDustConvertRequest {
+	r.accountType = &accountType
 	return r
 }
 
@@ -227,6 +234,7 @@ https://developers.binance.com/docs/wallet/asset/Dust-Convert
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
+@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
 @param clientId -  A unique id for the request
 @param targetAsset -
 @param thirdPartyClientId -
@@ -255,6 +263,9 @@ func (a *AssetAPIService) DustConvertExecute(r ApiDustConvertRequest) (*common.R
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
+	if r.accountType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
+	}
 	if r.clientId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientId", r.clientId, "form", "")
 	}
@@ -280,11 +291,18 @@ type ApiDustConvertibleAssetsRequest struct {
 	ctx                              context.Context
 	ApiService                       *AssetAPIService
 	targetAsset                      *string
+	accountType                      *string
 	dustQuotaAssetToTargetAssetPrice *float32
 }
 
 func (r ApiDustConvertibleAssetsRequest) TargetAsset(targetAsset string) ApiDustConvertibleAssetsRequest {
 	r.targetAsset = &targetAsset
+	return r
+}
+
+// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
+func (r ApiDustConvertibleAssetsRequest) AccountType(accountType string) ApiDustConvertibleAssetsRequest {
+	r.accountType = &accountType
 	return r
 }
 
@@ -305,6 +323,7 @@ https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param targetAsset -
+@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
 @param dustQuotaAssetToTargetAssetPrice -
 @return ApiDustConvertibleAssetsRequest
 */
@@ -329,6 +348,9 @@ func (a *AssetAPIService) DustConvertibleAssetsExecute(r ApiDustConvertibleAsset
 		return nil, common.ReportError("targetAsset is required and must be specified")
 	}
 
+	if r.accountType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
+	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "targetAsset", r.targetAsset, "form", "")
 	if r.dustQuotaAssetToTargetAssetPrice != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "dustQuotaAssetToTargetAssetPrice", r.dustQuotaAssetToTargetAssetPrice, "form", "")

@@ -5,6 +5,7 @@ All URIs are relative to *https://api.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**VipLoanBorrow**](TradeAPI.md#VipLoanBorrow) | **Post** /sapi/v1/loan/vip/borrow | VIP Loan Borrow(TRADE)
+[**VipLoanFixedRateBorrow**](TradeAPI.md#VipLoanFixedRateBorrow) | **Post** /sapi/v1/loan/vip/fixed/borrow | VIP Loan Fixed Rate Borrow(TRADE)
 [**VipLoanRenew**](TradeAPI.md#VipLoanRenew) | **Post** /sapi/v1/loan/vip/renew | VIP Loan Renew(TRADE)
 [**VipLoanRepay**](TradeAPI.md#VipLoanRepay) | **Post** /sapi/v1/loan/vip/repay | VIP Loan Repay(TRADE)
 
@@ -36,7 +37,7 @@ func main() {
 	loanCoin := "loanCoin_example" // string | 
 	loanAmount := float32(1.0) // float32 | 
 	collateralAccountId := "1" // string | Multiple split by `,`
-	collateralCoin := "collateralCoin_example" // string | Multiple split by `,`
+	collateralCoin := "collateralCoin_example" // string | Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire spot account balance)
 	isFlexibleRate := true // bool | Default: TRUE. TRUE : flexible rate; FALSE: fixed rate
 	loanTerm := int64(789) // int64 | Mandatory for fixed rate. Optional for fixed interest rate. Eg: 30/60 days (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -71,7 +72,7 @@ Name          | Type          | Description   | Notes
  **loanCoin** | **string** |  | 
  **loanAmount** | **float32** |  | 
  **collateralAccountId** | **string** | Multiple split by &#x60;,&#x60; | 
- **collateralCoin** | **string** | Multiple split by &#x60;,&#x60; | 
+ **collateralCoin** | **string** | Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire spot account balance) | 
  **isFlexibleRate** | **bool** | Default: TRUE. TRUE : flexible rate; FALSE: fixed rate | 
  **loanTerm** | **int64** | Mandatory for fixed rate. Optional for fixed interest rate. Eg: 30/60 days | 
  **recvWindow** | **int64** |  | 
@@ -79,6 +80,88 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**VipLoanBorrowResponse**](VipLoanBorrowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## VipLoanFixedRateBorrow
+
+> VipLoanFixedRateBorrowResponse VipLoanFixedRateBorrow(ctx).SupplyRequest(supplyRequest).BorrowCoin(borrowCoin).LoanTerm(loanTerm).BorrowUid(borrowUid).CollateralCoin(collateralCoin).CollateralAccountId(collateralAccountId).AutoRepay(autoRepay).RecvWindow(recvWindow).Execute()
+
+VIP Loan Fixed Rate Borrow(TRADE)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/viploan"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	supplyRequest := "supplyRequest_example" // string | Supply request string, positional encoding (no key). Multiple entries separated by `;`, fields separated by `:`, order: `<requestId>:<interestRate>:<amount>`. Example: `1212:0.12:100;3434:0.13:50`
+	borrowCoin := "borrowCoin_example" // string | Borrow coin
+	loanTerm := int64(789) // int64 | 30/60 days
+	borrowUid := int64(789) // int64 | Borrow receiving account UID
+	collateralCoin := "collateralCoin_example" // string | Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire spot account balance)
+	collateralAccountId := "1" // string | Multiple split by `,`
+	autoRepay := false // bool | Default: `true`. `true`: auto repay at expiration; `false`: auto-convert to flexible (floating rate) at expiration (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceVipLoanClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.VipLoanFixedRateBorrow(context.Background()).SupplyRequest(supplyRequest).BorrowCoin(borrowCoin).LoanTerm(loanTerm).BorrowUid(borrowUid).CollateralCoin(collateralCoin).CollateralAccountId(collateralAccountId).AutoRepay(autoRepay).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.VipLoanFixedRateBorrow``: %v\n", err)
+		return
+	}
+
+	// response from `VipLoanFixedRateBorrow`: VipLoanFixedRateBorrowResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **supplyRequest** | **string** | Supply request string, positional encoding (no key). Multiple entries separated by &#x60;;&#x60;, fields separated by &#x60;:&#x60;, order: &#x60;&lt;requestId&gt;:&lt;interestRate&gt;:&lt;amount&gt;&#x60;. Example: &#x60;1212:0.12:100;3434:0.13:50&#x60; | 
+ **borrowCoin** | **string** | Borrow coin | 
+ **loanTerm** | **int64** | 30/60 days | 
+ **borrowUid** | **int64** | Borrow receiving account UID | 
+ **collateralCoin** | **string** | Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire spot account balance) | 
+ **collateralAccountId** | **string** | Multiple split by &#x60;,&#x60; | 
+ **autoRepay** | **bool** | Default: &#x60;true&#x60;. &#x60;true&#x60;: auto repay at expiration; &#x60;false&#x60;: auto-convert to flexible (floating rate) at expiration | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**VipLoanFixedRateBorrowResponse**](VipLoanFixedRateBorrowResponse.md)
 
 ### Authorization
 
