@@ -264,14 +264,16 @@ func Decode(v interface{}, b []byte, contentType string) (err error) {
 		prefix := "HttpClientFile" + GenerateUUID()
 		f, err := os.CreateTemp("", prefix)
 		if err != nil {
-			f.Close()
-			os.Remove(f.Name())
 			return err
 		}
 		_, err = f.Write(b)
 		if err != nil {
-			f.Close()
-			os.Remove(f.Name())
+			if closeErr := f.Close(); closeErr != nil {
+				return closeErr
+			}
+			if removeErr := os.Remove(f.Name()); removeErr != nil {
+				return removeErr
+			}
 			return err
 		}
 		_, err = f.Seek(0, io.SeekStart)
@@ -281,14 +283,16 @@ func Decode(v interface{}, b []byte, contentType string) (err error) {
 		prefix := "HttpClientFile" + GenerateUUID()
 		*f, err = os.CreateTemp("", prefix)
 		if err != nil {
-			(*f).Close()
-			os.Remove((*f).Name())
 			return err
 		}
 		_, err = (*f).Write(b)
 		if err != nil {
-			(*f).Close()
-			os.Remove((*f).Name())
+			if closeErr := (*f).Close(); closeErr != nil {
+				return closeErr
+			}
+			if removeErr := os.Remove((*f).Name()); removeErr != nil {
+				return removeErr
+			}
 			return err
 		}
 		_, err = (*f).Seek(0, io.SeekStart)

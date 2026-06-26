@@ -1,5 +1,11 @@
 ### Changelog
 
+## 2.2.1 - 2026-06-26
+
+### Added (1)
+
+- Added `W3W Prediction` base url
+
 ## 2.2.0 - 2026-03-26
 
 ### Changed (4)
