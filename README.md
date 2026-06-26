@@ -41,6 +41,7 @@ Before using the SDK, ensure you have:
 - [binance-sub-account](./clients/sub-account/) - Sub Account connector
 - [binance-vip-loan](./clients/vip-loan/) - VIP Loan connector
 - [binance-wallet](./clients/wallet/) - Wallet connector
+- [binance-w3w-prediction](./clients/w3wprediction/) - W3w Prediction connector
 
 ## Documentation
 
