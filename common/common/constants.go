@@ -138,3 +138,6 @@ const VipLoanRestApiProdUrl = "https://api.binance.com"
 
 // Wallet API URLs
 const WalletRestApiProdUrl = "https://api.binance.com"
+
+// Web3 Wallet constants
+const W3wPredictionRestApiProdUrl = "https://api.binance.com"
