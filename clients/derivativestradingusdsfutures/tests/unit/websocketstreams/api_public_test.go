@@ -228,7 +228,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_PublicAPIService(
 		)
 		mockClient.WebsocketStreams.WsPublic.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"bookTicker","u":400900217,"E":1568014460893,"T":1568014460891,"s":"BNBUSDT","b":"25.35190000","B":"31.21000000","a":"25.36520000","A":"40.66000000","st":1}`
+		mockedJSON := `{"e":"bookTicker","u":400900217,"s":"BNBUSDT","ps":"BNBUSDT","E":1568014460893,"T":1568014460891,"b":"25.35190000","B":"31.21000000","a":"25.36520000","A":"40.66000000","st":1}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.PublicAPI.IndividualSymbolBookTickerStreams().Symbol("btcusdt").Execute()

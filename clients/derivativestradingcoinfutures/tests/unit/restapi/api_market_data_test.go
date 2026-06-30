@@ -1205,7 +1205,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 
 	t.Run("Test MarketDataAPIService QueryIndexPriceConstituents Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BTCUSD","time":1697422647853,"constituents":[{"exchange":"bitstamp","symbol":"btcusd"},{"exchange":"coinbase","symbol":"BTC-USD"},{"exchange":"kraken","symbol":"XBT/USD"},{"exchange":"binance_cross","symbol":"BTCUSDC*index(USDCUSD)"}]}`
+		mockedJSON := `{"symbol":"BTCUSD","time":1697422647853,"constituents":[{"exchange":"bitstamp","symbol":"btcusd","price":"94057.03000000","weight":"0.25000000"},{"exchange":"coinbase","symbol":"BTC-USD","price":"94140.58000000","weight":"0.25000000"},{"exchange":"kraken","symbol":"XBT/USD","price":"94060.10000000","weight":"0.25000000"},{"exchange":"binance_cross","symbol":"BTCUSDC*index(USDCUSD)","price":"94096.70000000","weight":"0.25000000"}]}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/constituents", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))

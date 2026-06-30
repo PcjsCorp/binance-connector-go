@@ -18,7 +18,7 @@ var _ common.MappedNullable = &WithdrawTravelRuleResponse{}
 // WithdrawTravelRuleResponse struct for WithdrawTravelRuleResponse
 type WithdrawTravelRuleResponse struct {
 	TrId                 *int64  `json:"trId,omitempty"`
-	Accpted              *bool   `json:"accpted,omitempty"`
+	Accepted             *bool   `json:"accepted,omitempty"`
 	Info                 *string `json:"info,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -74,36 +74,36 @@ func (o *WithdrawTravelRuleResponse) SetTrId(v int64) {
 	o.TrId = &v
 }
 
-// GetAccpted returns the Accpted field value if set, zero value otherwise.
-func (o *WithdrawTravelRuleResponse) GetAccpted() bool {
-	if o == nil || common.IsNil(o.Accpted) {
+// GetAccepted returns the Accepted field value if set, zero value otherwise.
+func (o *WithdrawTravelRuleResponse) GetAccepted() bool {
+	if o == nil || common.IsNil(o.Accepted) {
 		var ret bool
 		return ret
 	}
-	return *o.Accpted
+	return *o.Accepted
 }
 
-// GetAccptedOk returns a tuple with the Accpted field value if set, nil otherwise
+// GetAcceptedOk returns a tuple with the Accepted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WithdrawTravelRuleResponse) GetAccptedOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.Accpted) {
+func (o *WithdrawTravelRuleResponse) GetAcceptedOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.Accepted) {
 		return nil, false
 	}
-	return o.Accpted, true
+	return o.Accepted, true
 }
 
-// HasAccpted returns a boolean if a field has been set.
-func (o *WithdrawTravelRuleResponse) HasAccpted() bool {
-	if o != nil && !common.IsNil(o.Accpted) {
+// HasAccepted returns a boolean if a field has been set.
+func (o *WithdrawTravelRuleResponse) HasAccepted() bool {
+	if o != nil && !common.IsNil(o.Accepted) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccpted gets a reference to the given bool and assigns it to the Accpted field.
-func (o *WithdrawTravelRuleResponse) SetAccpted(v bool) {
-	o.Accpted = &v
+// SetAccepted gets a reference to the given bool and assigns it to the Accepted field.
+func (o *WithdrawTravelRuleResponse) SetAccepted(v bool) {
+	o.Accepted = &v
 }
 
 // GetInfo returns the Info field value if set, zero value otherwise.
@@ -151,8 +151,8 @@ func (o WithdrawTravelRuleResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.TrId) {
 		toSerialize["trId"] = o.TrId
 	}
-	if !common.IsNil(o.Accpted) {
-		toSerialize["accpted"] = o.Accpted
+	if !common.IsNil(o.Accepted) {
+		toSerialize["accepted"] = o.Accepted
 	}
 	if !common.IsNil(o.Info) {
 		toSerialize["info"] = o.Info
@@ -180,7 +180,7 @@ func (o *WithdrawTravelRuleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "trId")
-		delete(additionalProperties, "accpted")
+		delete(additionalProperties, "accepted")
 		delete(additionalProperties, "info")
 		o.AdditionalProperties = additionalProperties
 	}

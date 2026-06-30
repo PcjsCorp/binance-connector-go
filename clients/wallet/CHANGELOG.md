@@ -1,5 +1,17 @@
 ### Changelog
 
+## 1.9.0 - 2026-06-30
+
+### Changed (2)
+
+- Modified response for `brokerWithdraw()` (`POST /sapi/v1/localentity/broker/withdraw/apply`):
+  - property `accepted` added
+  - property `accpted` deleted
+
+- Modified response for `withdrawTravelRule()` (`POST /sapi/v1/localentity/withdraw/apply`):
+  - property `accepted` added
+  - property `accpted` deleted
+
 ## 1.8.0 - 2026-06-16
 
 ### Added (2)
@@ -13,7 +25,6 @@
   - affected methods:
     - `dustConvert()` (`POST /sapi/v1/asset/dust-convert/convert`)
     - `dustConvertibleAssets()` (`POST /sapi/v1/asset/dust-convert/query-convertible-assets`)
-
 
 ## 1.7.0 - 2026-03-26
 

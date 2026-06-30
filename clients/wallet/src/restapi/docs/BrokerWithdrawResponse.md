@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **TrId** | Pointer to **int64** |  | [optional] 
-**Accpted** | Pointer to **bool** |  | [optional] 
+**Accepted** | Pointer to **bool** |  | [optional] 
 **Info** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -52,30 +52,30 @@ SetTrId sets TrId field to given value.
 
 HasTrId returns a boolean if a field has been set.
 
-### GetAccpted
+### GetAccepted
 
-`func (o *BrokerWithdrawResponse) GetAccpted() bool`
+`func (o *BrokerWithdrawResponse) GetAccepted() bool`
 
-GetAccpted returns the Accpted field if non-nil, zero value otherwise.
+GetAccepted returns the Accepted field if non-nil, zero value otherwise.
 
-### GetAccptedOk
+### GetAcceptedOk
 
-`func (o *BrokerWithdrawResponse) GetAccptedOk() (*bool, bool)`
+`func (o *BrokerWithdrawResponse) GetAcceptedOk() (*bool, bool)`
 
-GetAccptedOk returns a tuple with the Accpted field if it's non-nil, zero value otherwise
+GetAcceptedOk returns a tuple with the Accepted field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccpted
+### SetAccepted
 
-`func (o *BrokerWithdrawResponse) SetAccpted(v bool)`
+`func (o *BrokerWithdrawResponse) SetAccepted(v bool)`
 
-SetAccpted sets Accpted field to given value.
+SetAccepted sets Accepted field to given value.
 
-### HasAccpted
+### HasAccepted
 
-`func (o *BrokerWithdrawResponse) HasAccpted() bool`
+`func (o *BrokerWithdrawResponse) HasAccepted() bool`
 
-HasAccpted returns a boolean if a field has been set.
+HasAccepted returns a boolean if a field has been set.
 
 ### GetInfo
 

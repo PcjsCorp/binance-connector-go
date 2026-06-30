@@ -25,7 +25,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 
 	t.Run("Test TravelRuleAPIService BrokerWithdraw Success", func(t *testing.T) {
 
-		mockedJSON := `{"trId":123456,"accpted":true,"info":"Withdraw request accepted"}`
+		mockedJSON := `{"trId":123456,"accepted":true,"info":"Withdraw request accepted"}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/localentity/broker/withdraw/apply", r.URL.Path)
 			require.Equal(t, "address_example", r.URL.Query().Get("address"))
@@ -324,7 +324,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 
 	t.Run("Test TravelRuleAPIService GetCountryList Success", func(t *testing.T) {
 
-		mockedJSON := `{"countries":[{"countryCode":"au","countryName":"Australia","blockType":"supported","depositAllowed":true,"withdrawalAllowed":true,"hasRegionRestrictions":true}],"lastUpdated":1716300000000}`
+		mockedJSON := `{"countries":[{"countryCode":"au","countryName":"Australia","blockType":"supported","depositAllowed":true,"withdrawalAllowed":true,"hasRegionRestrictions":false}],"lastUpdated":1716300000000}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/localentity/country/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -842,7 +842,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 
 	t.Run("Test TravelRuleAPIService WithdrawTravelRule Success", func(t *testing.T) {
 
-		mockedJSON := `{"trId":123456,"accpted":true,"info":"Withdraw request accepted"}`
+		mockedJSON := `{"trId":123456,"accepted":true,"info":"Withdraw request accepted"}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/localentity/withdraw/apply", r.URL.Path)
 			require.Equal(t, "coin_example", r.URL.Query().Get("coin"))

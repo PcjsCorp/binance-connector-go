@@ -20,13 +20,13 @@ type IndividualSymbolBookTickerStreamsResponse struct {
 	Smalle               *string `json:"e,omitempty"`
 	Smallu               *int64  `json:"u,omitempty"`
 	Smalls               *string `json:"s,omitempty"`
+	Smallps              *string `json:"ps,omitempty"`
 	Smallb               *string `json:"b,omitempty"`
 	B                    *string `json:"B,omitempty"`
 	Smalla               *string `json:"a,omitempty"`
 	A                    *string `json:"A,omitempty"`
 	T                    *int64  `json:"T,omitempty"`
 	E                    *int64  `json:"E,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
 	Smallst              *int64  `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -144,6 +144,38 @@ func (o *IndividualSymbolBookTickerStreamsResponse) HasSmalls() bool {
 // SetS gets a reference to the given string and assigns it to the S field.
 func (o *IndividualSymbolBookTickerStreamsResponse) SetSmalls(v string) {
 	o.Smalls = &v
+}
+
+// GetPs returns the Ps field value if set, zero value otherwise.
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallps() string {
+	if o == nil || common.IsNil(o.Smallps) {
+		var ret string
+		return ret
+	}
+	return *o.Smallps
+}
+
+// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallpsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallps) {
+		return nil, false
+	}
+	return o.Smallps, true
+}
+
+// HasPs returns a boolean if a field has been set.
+func (o *IndividualSymbolBookTickerStreamsResponse) HasSmallps() bool {
+	if o != nil && !common.IsNil(o.Smallps) {
+		return true
+	}
+
+	return false
+}
+
+// SetPs gets a reference to the given string and assigns it to the Ps field.
+func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallps(v string) {
+	o.Smallps = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
@@ -338,38 +370,6 @@ func (o *IndividualSymbolBookTickerStreamsResponse) SetE(v int64) {
 	o.E = &v
 }
 
-// GetPs returns the Ps field value if set, zero value otherwise.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallps() string {
-	if o == nil || common.IsNil(o.Smallps) {
-		var ret string
-		return ret
-	}
-	return *o.Smallps
-}
-
-// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallpsOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smallps) {
-		return nil, false
-	}
-	return o.Smallps, true
-}
-
-// HasPs returns a boolean if a field has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) HasSmallps() bool {
-	if o != nil && !common.IsNil(o.Smallps) {
-		return true
-	}
-
-	return false
-}
-
-// SetPs gets a reference to the given string and assigns it to the Ps field.
-func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallps(v string) {
-	o.Smallps = &v
-}
-
 // GetSt returns the St field value if set, zero value otherwise.
 func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallst() int64 {
 	if o == nil || common.IsNil(o.Smallst) {
@@ -421,6 +421,9 @@ func (o IndividualSymbolBookTickerStreamsResponse) ToMap() (map[string]interface
 	if !common.IsNil(o.Smalls) {
 		toSerialize["s"] = o.Smalls
 	}
+	if !common.IsNil(o.Smallps) {
+		toSerialize["ps"] = o.Smallps
+	}
 	if !common.IsNil(o.Smallb) {
 		toSerialize["b"] = o.Smallb
 	}
@@ -438,9 +441,6 @@ func (o IndividualSymbolBookTickerStreamsResponse) ToMap() (map[string]interface
 	}
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
-	}
-	if !common.IsNil(o.Smallps) {
-		toSerialize["ps"] = o.Smallps
 	}
 	if !common.IsNil(o.Smallst) {
 		toSerialize["st"] = o.Smallst
@@ -470,13 +470,13 @@ func (o *IndividualSymbolBookTickerStreamsResponse) UnmarshalJSON(data []byte) (
 		delete(additionalProperties, "e")
 		delete(additionalProperties, "u")
 		delete(additionalProperties, "s")
+		delete(additionalProperties, "ps")
 		delete(additionalProperties, "b")
 		delete(additionalProperties, "B")
 		delete(additionalProperties, "a")
 		delete(additionalProperties, "A")
 		delete(additionalProperties, "T")
 		delete(additionalProperties, "E")
-		delete(additionalProperties, "ps")
 		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties
 	}
