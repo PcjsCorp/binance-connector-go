@@ -19,6 +19,8 @@ var _ common.MappedNullable = &QueryIndexPriceConstituentsResponseConstituentsIn
 type QueryIndexPriceConstituentsResponseConstituentsInner struct {
 	Exchange             *string `json:"exchange,omitempty"`
 	Symbol               *string `json:"symbol,omitempty"`
+	Price                *string `json:"price,omitempty"`
+	Weight               *string `json:"weight,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -105,6 +107,70 @@ func (o *QueryIndexPriceConstituentsResponseConstituentsInner) SetSymbol(v strin
 	o.Symbol = &v
 }
 
+// GetPrice returns the Price field value if set, zero value otherwise.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) GetPrice() string {
+	if o == nil || common.IsNil(o.Price) {
+		var ret string
+		return ret
+	}
+	return *o.Price
+}
+
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) GetPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Price) {
+		return nil, false
+	}
+	return o.Price, true
+}
+
+// HasPrice returns a boolean if a field has been set.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) HasPrice() bool {
+	if o != nil && !common.IsNil(o.Price) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrice gets a reference to the given string and assigns it to the Price field.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) SetPrice(v string) {
+	o.Price = &v
+}
+
+// GetWeight returns the Weight field value if set, zero value otherwise.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) GetWeight() string {
+	if o == nil || common.IsNil(o.Weight) {
+		var ret string
+		return ret
+	}
+	return *o.Weight
+}
+
+// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) GetWeightOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Weight) {
+		return nil, false
+	}
+	return o.Weight, true
+}
+
+// HasWeight returns a boolean if a field has been set.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) HasWeight() bool {
+	if o != nil && !common.IsNil(o.Weight) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeight gets a reference to the given string and assigns it to the Weight field.
+func (o *QueryIndexPriceConstituentsResponseConstituentsInner) SetWeight(v string) {
+	o.Weight = &v
+}
+
 func (o QueryIndexPriceConstituentsResponseConstituentsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -120,6 +186,12 @@ func (o QueryIndexPriceConstituentsResponseConstituentsInner) ToMap() (map[strin
 	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
+	}
+	if !common.IsNil(o.Price) {
+		toSerialize["price"] = o.Price
+	}
+	if !common.IsNil(o.Weight) {
+		toSerialize["weight"] = o.Weight
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -145,6 +217,8 @@ func (o *QueryIndexPriceConstituentsResponseConstituentsInner) UnmarshalJSON(dat
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "exchange")
 		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "price")
+		delete(additionalProperties, "weight")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -1502,7 +1502,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"KR_EquityUpdate","E":1779962686695,"t":1779958800000,"T":1780009200000,"S":"NO_TRADING"}`
+		mockedJSON := `{"e":"EquityUpdate","E":1765244143062,"t":1765242000000,"T":1765270800000,"S":"OVERNIGHT"}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.TradingSessionStream().Execute()
